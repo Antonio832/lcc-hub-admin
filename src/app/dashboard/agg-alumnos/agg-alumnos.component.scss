@@ -1,0 +1,23 @@
+.title{
+    padding: .5rem 0 .5rem .5rem;
+    width:100%;
+    border: 1px rgba(0, 0, 0, 0.144);
+    border-style: none none solid none;
+}
+
+.cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.drop-zone{
+    aspect-ratio: 19 / 12;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
+    border: 3px dashed rgba(128, 128, 128, 0.363);
+}

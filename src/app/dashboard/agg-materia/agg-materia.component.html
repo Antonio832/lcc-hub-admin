@@ -1,0 +1,150 @@
+<h1 class="title">
+    Gestor de Materias
+</h1> 
+<div class="cont">
+    <div class="add-materia">
+        <div class="togg-arch">
+            <mat-slide-toggle [color]="'primary'" [(ngModel)]="fileMode"></mat-slide-toggle>
+            <h2>Modo </h2>
+            <h2 class="mode" *ngIf="fileMode">archivo</h2>
+            <h2 class="mode" *ngIf="!fileMode">individual</h2>
+        </div>
+        <div *ngIf="!fileMode">
+            <form [formGroup]="materiaForm" class="signleForm">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Numero de la materia</mat-label>
+                        <input 
+                            matInput 
+                            autocomplete="off" 
+                            type="number"
+                            formControlName="subjectKey" 
+                        />
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre de la materia</mat-label>
+                        <input 
+                            matInput 
+                            autocomplete="off" 
+                            formControlName="subjectName" 
+                        />
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Requisitos</mat-label>
+                        <input 
+                            matInput 
+                            autocomplete="off" 
+                            formControlName="requirements" 
+                        />
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label># creditos</mat-label>
+                        <input 
+                            matInput 
+                            type="number"
+                            autocomplete="off" 
+                            formControlName="credits" 
+                        />
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Departamento</mat-label>
+                        <input 
+                            matInput 
+                            autocomplete="off" 
+                            formControlName="department" 
+                        />
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Rama</mat-label>
+                        <input 
+                            matInput 
+                            autocomplete="off" 
+                            formControlName="branch" 
+                        />
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Division Academica</mat-label>
+                        <input 
+                            matInput 
+                            autocomplete="off" 
+                            formControlName="academicDivision" 
+                        />
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Horas Lab</mat-label>
+                        <input 
+                            matInput 
+                            autocomplete="off" 
+                            formControlName="labHours" 
+                        />
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Horas Teoria</mat-label>
+                        <input 
+                            matInput 
+                            autocomplete="off" 
+                            formControlName="theoryHours" 
+                        />
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Horas Taller</mat-label>
+                        <input 
+                            matInput 
+                            autocomplete="off" 
+                            formControlName="workshopHours" 
+                        />
+                    </mat-form-field>
+                </div>
+            </form>
+            <button [disabled]="!materiaForm.valid" mat-raised-button>Agregar Materia</button>
+        </div>
+        <div 
+            *ngIf="fileMode"
+            #dpz 
+            class="drop-zone"
+            draggable="true"
+            (dragover)="onDragHandler(dpz)" 
+            (dragleave)="onLeaveDrag(dpz)"
+        >
+            Suelta archivo csv 
+            <p>ó</p>
+            <button mat-button (click)="file.click()">
+                <mat-icon>file_download</mat-icon>
+                importar
+            </button>
+            <input 
+                type="file"
+                #file
+                [multiple]="false"
+                (change)="onFileChange($event, file)"
+                style="display:none; width: 100%; height: 100%;" 
+            />
+        </div>
+    </div>
+    <div class="display-materias">
+        <h1>Lista de materias</h1>
+        <button mat-raised-button>Buscar una materia</button>
+        <button mat-raised-button *ngIf="!gotMaterias" (click)="getMaterias()">Cargar materias</button>
+        <div class="lista-materias" *ngIf="gotMaterias">
+            <mat-card *ngFor="let mat of materias" class="materia">
+                <p>{{mat.subjectKey}}</p>
+                <p>{{mat.subjectName}}</p>
+                <p>{{mat.branch}}</p>
+            </mat-card>
+            <div class="actions">
+                <button mat-raised-button>Cargar Mas</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<h1 class="title">
+    Gestor de Alumnos
+</h1>
+<div class="cont">
+    <div class="add-alumn">
+        <div class="drop-zone" draggable="true">
+            Suelta archivo csv 
+            <button mat-button (click)="file.click()">
+                importar
+            </button>
+            <input 
+                type="file"
+                #file
+                [multiple]="false"
+                (change)="onFileChange($event, file)"
+                style="display:none" 
+            />
+        </div>
+    </div>
+    <div class="display-alumnos">
+
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lcc-hub": {
+      "hosting": {
+        "lccHub-admin": [
+          "lcchub"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lcc-hub"
+  }
+}

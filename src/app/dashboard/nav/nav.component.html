@@ -1,0 +1,51 @@
+<div class="sideNav" [ngClass]="opened ? 'opened' : ''" >
+    <div class="wrapper" (click)="opened = true"></div>
+    <h3 *ngIf="opened" class="title">Admin Dashboard</h3>
+    <img *ngIf="!opened" class="logo" src="../../../assets/crop.jpg">
+    <div class="profile">
+        <button mat-button class="profile-btn" [matMenuTriggerFor]="menu">
+            <mat-icon>person</mat-icon>
+            <span *ngIf="opened">
+                Edelmira
+            </span>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="this.afAuth.signOut()">
+                <mat-icon style="color: red;">logout</mat-icon>
+                Log Out
+            </button>
+        </mat-menu>
+    </div>
+    <mat-accordion class="acc">
+        <mat-expansion-panel hideToggle class="xpanel" #tPanel>
+            <mat-expansion-panel-header>
+                <mat-icon class="panel-ico">cast_for_education</mat-icon>
+                <p style="white-space: nowrap;" *ngIf="opened">
+                    Gestión Academica
+                </p>
+            </mat-expansion-panel-header>
+            <div class="expp">
+                <button mat-button (click)="emmitComponent('materias')">Materias</button>
+                <button mat-button (click)="emmitComponent('alumnos')">Alumnos</button>
+                <button mat-button (click)="emmitComponent('mapa')">Mapa curricular</button>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle class="xpanel" #bPanel>
+            <mat-expansion-panel-header>
+                <mat-icon class="panel-ico">hub</mat-icon>
+                <p style="white-space: nowrap;" *ngIf="opened">
+                    Gestión LCC Hub
+                </p>
+            </mat-expansion-panel-header>
+            <div class="expp">
+                <button mat-button (click)="emmitComponent('anuncios')">Anuncios</button>
+                <button mat-button (click)="emmitComponent('articulos')">Articulos</button>
+                <button mat-button (click)="emmitComponent('videos')">Videos</button>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <button mat-icon-button (click)="opened = false; accordion?.closeAll()" class="toggle">
+        <mat-icon style="color: red;">keyboard_double_arrow_left</mat-icon>
+    </button>
+</div>

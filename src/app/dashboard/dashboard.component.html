@@ -1,0 +1,15 @@
+<div class="dashboard">
+    <div class="drawer">
+        
+        <app-nav (componentHandler)="setComponent($event)"></app-nav>
+        <!-- <button mat-raised-button (click)="signOut()" [color]="'warn'">Sign Out</button> -->
+    </div>
+    <div class="content" [ngSwitch]="selected">
+        <agg-materia *ngSwitchCase="'materias'"></agg-materia>
+        <agg-alumnos *ngSwitchCase="'alumnos'"></agg-alumnos>
+        <mapa *ngSwitchCase="'mapa'"></mapa>
+        <articulos *ngSwitchCase="'articulos'"></articulos>
+        <anuncios *ngSwitchCase="'anuncios'"></anuncios>
+        <videos *ngSwitchCase="'videos'"></videos>
+    </div>
+</div>

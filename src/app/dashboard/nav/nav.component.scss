@@ -1,0 +1,91 @@
+.sideNav{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    --navW: 5rem;
+    width: var(--navW);
+    background-color: rgba(0, 0, 0, 0.144);
+    transition: width .3s ease;
+    position: relative;
+}
+
+.title{
+    overflow: hidden;
+    margin-inline: auto; 
+    white-space: nowrap;
+    margin-block: .5rem;
+    overflow: hidden;
+}
+
+.logo{
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.sideNav.opened{
+    cursor: default;
+    margin-right: 2rem;
+    width: 15rem;
+}
+
+.profile-btn{
+    border-radius: 999vw;
+}
+
+.wrapper{
+    position: absolute;
+    cursor: pointer;
+    height: 100vh;
+    z-index: 999;
+    width: var(--navW);
+}
+
+.sideNav.opened .wrapper{
+    visibility: hidden;
+}
+
+.sideNav.opened .profile-btn{
+    border-radius: 0;
+}
+
+.toggle{
+    position: absolute;
+    right: -2rem;
+    top: 0;
+    opacity: 0;
+}
+
+.sideNav.opened .toggle{
+    z-index: 99999;
+    opacity: 1;
+}
+
+.expp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+    button{
+        width: min-content;
+    }
+}
+
+.panel-ico{
+    margin: 0 !important;
+}
+
+.xpanel{
+    padding: 0;
+}
+
+.sideNav.opened .panel-ico{
+    margin: 0 20px 0 0!important;
+}
+
+
+.acc{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}

@@ -1,0 +1,65 @@
+.landing{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    background-color: #2f2f2f;
+    align-items: center;
+    overflow: hidden;
+    gap: 2rem;
+}
+
+.prefix{
+    margin-right: .5rem;
+}
+
+.divider{
+    width: 1px;
+    height: 60vh;
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(131,131,131,1) 50%, rgba(0,212,255,0) 100%);
+}
+
+.form{
+    max-width: 300px;
+    margin-left: 8rem;
+    animation: formEntrance 1s ease;
+}
+
+@keyframes formEntrance {
+    0%{
+        translate: 0 20%;
+        opacity: 0;
+    }
+
+    100%{
+        translate: 0;
+    }
+}
+
+.actions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo{
+    width: 200vw;
+    height: 200vh;
+    position: absolute;
+    left: 40%;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 60%;
+    img{
+        position: relative;
+        top: 45%;
+        left: 3%;
+    }
+    background-color: white;
+    box-shadow: 10px 0px 13px -7px rgba(0,0,0,0.75) inset;
+    -webkit-box-shadow: 10px 0px 13px -7px rgba(0,0,0,0.75) inset;
+    -moz-box-shadow: 10px 0px 13px -7px rgba(0,0,0,0.75) inset;
+}
+
+.cont-form{
+    display: flex;
+    flex-direction: column;
+}
