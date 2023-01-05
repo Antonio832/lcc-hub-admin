@@ -1,26 +1,21 @@
-<div class="sideNav" [ngClass]="opened ? 'opened' : ''" >
-    <div class="wrapper" (click)="opened = true"></div>
-    <h3 *ngIf="opened" class="title">Admin Dashboard</h3>
-    <img *ngIf="!opened" class="logo" src="../../../assets/crop.jpg">
+<div class="sideNav">
+    <h2 class="title">Admin Dashboard</h2>
     <div class="profile">
-        <button mat-button class="profile-btn" [matMenuTriggerFor]="menu">
+        <button mat-button class="profile-btn">
             <mat-icon>person</mat-icon>
-            <span *ngIf="opened">
+            <span>
                 Edelmira
             </span>
         </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="this.afAuth.signOut()">
-                <mat-icon style="color: red;">logout</mat-icon>
-                Log Out
-            </button>
-        </mat-menu>
+        <button class="logout" mat-icon-button (click)="this.afAuth.signOut()">
+            <mat-icon style="color: red;">logout</mat-icon>
+        </button>
     </div>
-    <mat-accordion class="acc">
-        <mat-expansion-panel hideToggle class="xpanel" #tPanel>
+    <mat-accordion class="acc" multi>
+        <mat-expansion-panel class="xpanel" #tPanel>
             <mat-expansion-panel-header>
                 <mat-icon class="panel-ico">cast_for_education</mat-icon>
-                <p style="white-space: nowrap;" *ngIf="opened">
+                <p class="expTitle">
                     Gestión Academica
                 </p>
             </mat-expansion-panel-header>
@@ -31,10 +26,10 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel hideToggle class="xpanel" #bPanel>
+        <mat-expansion-panel class="xpanel" #bPanel>
             <mat-expansion-panel-header>
                 <mat-icon class="panel-ico">hub</mat-icon>
-                <p style="white-space: nowrap;" *ngIf="opened">
+                <p class="expTitle">
                     Gestión LCC Hub
                 </p>
             </mat-expansion-panel-header>
@@ -45,7 +40,4 @@
             </div>
         </mat-expansion-panel>
     </mat-accordion>
-    <button mat-icon-button (click)="opened = false; accordion?.closeAll()" class="toggle">
-        <mat-icon style="color: red;">keyboard_double_arrow_left</mat-icon>
-    </button>
 </div>

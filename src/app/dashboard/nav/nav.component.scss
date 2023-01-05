@@ -2,9 +2,9 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    --navW: 5rem;
+    --navW: 15rem;
     width: var(--navW);
-    background-color: rgba(0, 0, 0, 0.144);
+    background-color: white;
     transition: width .3s ease;
     position: relative;
 }
@@ -14,51 +14,30 @@
     margin-inline: auto; 
     white-space: nowrap;
     margin-block: .5rem;
+    margin-left: 1rem;
     overflow: hidden;
 }
 
-.logo{
-    display: block;
-    width: auto;
-    height: auto;
+.profile{
+    display: flex;
+    justify-content: center;
 }
 
-.sideNav.opened{
-    cursor: default;
-    margin-right: 2rem;
-    width: 15rem;
+.logout{
+    opacity: 0;
+    transition: all .5s ease-in-out;
+}
+
+.profile:hover .logout{
+    opacity: 1;
 }
 
 .profile-btn{
     border-radius: 999vw;
 }
 
-.wrapper{
-    position: absolute;
-    cursor: pointer;
-    height: 100vh;
-    z-index: 999;
-    width: var(--navW);
-}
-
-.sideNav.opened .wrapper{
-    visibility: hidden;
-}
-
 .sideNav.opened .profile-btn{
     border-radius: 0;
-}
-
-.toggle{
-    position: absolute;
-    right: -2rem;
-    top: 0;
-    opacity: 0;
-}
-
-.sideNav.opened .toggle{
-    z-index: 99999;
-    opacity: 1;
 }
 
 .expp{
@@ -77,12 +56,19 @@
 
 .xpanel{
     padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.expTitle{
+    margin: 0;
+    width: 100%;
+    margin-inline: .5rem;
 }
 
 .sideNav.opened .panel-ico{
     margin: 0 20px 0 0!important;
 }
-
 
 .acc{
     display: flex;

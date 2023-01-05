@@ -9,7 +9,7 @@ import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
 })
 export class NavComponent implements OnInit {
 
-  opened = false;
+  opened = true;
 
   @Output() componentHandler = new EventEmitter<string>()
 
@@ -20,10 +20,6 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleNav(exp?: boolean){
-    if(!exp) this.opened = true
-    if(exp) this.opened = false
-  }
 
   emmitComponent(componentName: string){
     return this.componentHandler.emit(componentName)
