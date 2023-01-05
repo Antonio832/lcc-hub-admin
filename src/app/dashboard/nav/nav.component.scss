@@ -46,7 +46,11 @@
     justify-content: center;
     gap: .5rem;
     button{
-        width: min-content;
+        height: 2.5rem;
+        text-align: start;
+    }
+    button:hover{
+        background-color: rgba(128, 128, 128, 0.13);
     }
 }
 
@@ -66,8 +70,8 @@
     margin-inline: .5rem;
 }
 
-.sideNav.opened .panel-ico{
-    margin: 0 20px 0 0!important;
+.panel-ico{
+    width: 2rem;
 }
 
 .acc{
