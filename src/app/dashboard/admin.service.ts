@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, orderBy, limit, query, getDocs, startAt } from '@angular/fire/firestore';
-import { doc, setDoc } from '@firebase/firestore';
+import { doc, setDoc, Timestamp } from '@firebase/firestore';
+
+interface _Link{
+  url: string,
+  date: Date
+}
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +30,11 @@ export class AdminService {
   // Obtiene todas las materias de 10 en 10
   getMaterias(){
     return getDocs(query(collection(this.db,"subjects"),orderBy("subjectName", "asc"), limit(10)))
+  }
+
+  // VIDEOS
+  aggVideo(link: _Link){
+    let formatedLink = {...link, date: Timestamp.fromDate(link.date)}
+    return setDoc(doc(this.db,"videos"), formatedLink)
   }
 }

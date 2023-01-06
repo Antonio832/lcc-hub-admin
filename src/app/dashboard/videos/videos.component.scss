@@ -10,3 +10,22 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.aggVideo{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.videos{
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.videosCont{
+    display: flex;
+}
