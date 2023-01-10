@@ -7,7 +7,13 @@
                 Edelmira
             </span>
         </button>
-        <button class="logout" mat-icon-button (click)="this.afAuth.signOut()">
+        <button 
+            class="logout" 
+            mat-icon-button 
+            (click)="this.afAuth.signOut()" 
+            matTooltip="LogOut"
+            matTooltipPosition="right"
+        >
             <mat-icon style="color: red;">logout</mat-icon>
         </button>
     </div>

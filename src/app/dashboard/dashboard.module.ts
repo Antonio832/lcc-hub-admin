@@ -11,6 +11,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatCardModule } from '@angular/material/card'
 import { MatInputModule, } from '@angular/material/input'
 import { MatFormFieldModule,  } from '@angular/material/form-field'
+import { MatTooltipModule } from '@angular/material/tooltip'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -38,6 +39,7 @@ import { VideosComponent } from './videos/videos.component';
     FormsModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
+    MatTooltipModule,
     MatInputModule,
     MatFormFieldModule,
     MatMenuModule,
