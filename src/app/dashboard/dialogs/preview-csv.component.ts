@@ -49,7 +49,6 @@ export class PreviewCsvComponent implements OnInit {
     private dialogRef: MatDialogRef<PreviewCsvComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
-    console.log(data)
   }
 
   ngOnInit(): void {

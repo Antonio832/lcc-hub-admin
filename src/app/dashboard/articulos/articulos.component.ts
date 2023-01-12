@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticulosComponent implements OnInit {
 
+  link = ''
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  aggLink(){
+    
   }
 
 }

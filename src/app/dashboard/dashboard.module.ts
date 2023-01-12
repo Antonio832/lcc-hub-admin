@@ -17,7 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { NavComponent } from './nav/nav.component';
-import { DndDirective } from './dnd.directive';
 import { AggAlumnosComponent } from './agg-alumnos/agg-alumnos.component';
 import { PreviewCsvComponent } from './dialogs/preview-csv.component';
 import { AggMateriaComponent } from './agg-materia/agg-materia.component';
@@ -28,7 +27,7 @@ import { VideosComponent } from './videos/videos.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, DndDirective, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent],
+  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent],
   imports: [
     CommonModule,
     MatButtonModule,

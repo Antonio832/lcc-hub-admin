@@ -9,15 +9,12 @@ import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
 })
 export class NavComponent implements OnInit {
 
-  opened = true;
-
   @Output() componentHandler = new EventEmitter<string>()
-
-  @ViewChild(MatAccordion) accordion: MatAccordion | undefined;
 
   constructor(public afAuth: Auth) { }
 
   ngOnInit(): void {
+    
   }
 
 

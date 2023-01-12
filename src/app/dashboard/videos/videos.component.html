@@ -10,6 +10,7 @@
                 [(ngModel)]="link"
                 matInput 
                 autocomplete="off" 
+                (keydown.enter)="aggLink()"
                 placeholder="https://www.youtube.com/watch?v=mWWS8B-5eT4" 
             />
             <button 
@@ -25,7 +26,16 @@
     <div class="videos">
         <h3>Todos los videos:</h3>
         <div class="videosCont">
-            
+            <div class="video" *ngFor="let video of safeVideos">
+                <iframe [src]="video.url" frameborder="0"></iframe>
+                <div class="controls">
+                    <button mat-icon-button matTooltip="Editar"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button matTooltip="Borrar" (click)="deleteVid(video.code)">
+                        <mat-icon [color]="'warn'">delete</mat-icon>
+                    </button>
+                    {{video.date.toDate() | date:'dd/MM/yy - h:mm:ss a'}}
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,4 +1,31 @@
 <h1 class="title">
     Articulos
 </h1> 
-<div class="cont"></div>
+<div class="cont">
+    <div class="aggLink">
+        <h3>Agregar un articulo:</h3>
+        <mat-form-field appearance="outline">
+            <mat-label>Link</mat-label>
+            <input 
+                [(ngModel)]="link"
+                matInput 
+                autocomplete="off" 
+                (keydown.enter)="aggLink()"
+            />
+            <button 
+                mat-icon-button 
+                matSuffix 
+                [disabled]="!link"
+                (click)="aggLink()"
+            >
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="articulos">
+        <h3>Todos los articulos:</h3>
+        <div class="articulosCont">
+            
+        </div>
+    </div>
+</div>

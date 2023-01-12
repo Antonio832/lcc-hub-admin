@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, orderBy, limit, query, getDocs, startAt } from '@angular/fire/firestore';
-import { doc, setDoc, Timestamp } from '@firebase/firestore';
+import { Firestore, collection, orderBy, limit, query, getDocs, startAt, deleteDoc } from '@angular/fire/firestore';
+import { doc, setDoc, Timestamp, getDoc } from '@firebase/firestore';
 
 interface _Link{
   url: string,
@@ -14,6 +14,17 @@ export class AdminService {
 
   // Inyeccion del proveedor de la base de datos
   constructor(private db: Firestore) { }
+
+  //Perfiles
+  async getUserProfile(uid: string){
+    const docRef = doc(this.db,"profiles", uid)
+    const docSnap = await getDoc(docRef)
+    if(docSnap.exists()){
+      return docSnap.data()
+    }else{
+      return null;
+    }
+  }
 
   // Agrega un arreglo de materias a la base de datos en 
   // la coleccion "subjects"
@@ -33,8 +44,22 @@ export class AdminService {
   }
 
   // VIDEOS
-  aggVideo(link: _Link){
+  async aggVideo(link: _Link){
     let formatedLink = {...link, date: Timestamp.fromDate(link.date)}
-    return setDoc(doc(this.db,"videos"), formatedLink)
+    return await setDoc(doc(this.db,"videos", formatedLink.url), formatedLink)
+  }
+
+  getVideos(){
+    return query(collection(this.db,"videos"),orderBy("date", "asc"))
+  }
+
+  deleteVid(ref: string){
+    return deleteDoc(doc(this.db,"videos",ref))
+  }
+
+  // ARTICULOS 
+  aggArticulo(link: _Link){
+    let formatedLink = {...link, date: Timestamp.fromDate(link.date)}
+    return setDoc(doc(this.db,"articulos", formatedLink.url), formatedLink)
   }
 }

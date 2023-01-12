@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private auth: Auth, private zn: NgZone, private rtr: Router) { }
 
-  selected = 'materias'
+  selected = 'videos'
 
   ngOnInit(): void {
     this.auth.onAuthStateChanged((user)=>{
@@ -21,8 +21,10 @@ export class DashboardComponent implements OnInit {
       if(!user){
         this.zn.run(()=>{
           // Navega hacia el inicio
-          this.rtr.navigate(['/'])
+          return this.rtr.navigate(['/'])
         })
+      }else{
+        console.log(user)
       }
     })
   }

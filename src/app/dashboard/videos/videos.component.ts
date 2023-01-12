@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { onSnapshot } from '@firebase/firestore';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -10,20 +12,54 @@ export class VideosComponent implements OnInit {
 
   link: string = ''
 
-  constructor(private adminService: AdminService) { }
+  safeVideos: any[] = []
+
+  constructor(private adminService: AdminService, public sanitizer: DomSanitizer) { }
+
+  unsubscribe: any = undefined
 
   ngOnInit(): void {
+    this.adminService.getVideos()
+    this.unsubscribe = onSnapshot(this.adminService.getVideos(), (snap)=>{
+      let auxArr: any[] = []
+      snap.forEach(doc=>{
+        auxArr.push(doc.data())
+      })
+      this.safeVideos = auxArr.map((video,index)=>{
+        let untrustedUrl = 'https://www.youtube.com/embed/' + video.url
+        return {...video, url: this.sanitizer.bypassSecurityTrustResourceUrl(untrustedUrl), code: video.url}
+      })
+    })
   }
 
   aggLink(){
+    if(!this.link) return 
+
     let givenURL
+    
     try {
         givenURL = new URL (this.link);
     } catch (error) {
         console.log ("error is", error);
-       return console.log('no fue valido carnal'); 
+        this.link = ''
+       return console.log('no fue un URL valido'); 
     }
-    return this.adminService.aggVideo({url: this.link, date: new Date()});
+    const splitUrl = this.link.split('www.')
+    const doubleSplit = splitUrl[1].split('.')
+
+    if(doubleSplit[0] != 'youtube') return 
+
+    const videoCode = doubleSplit[1].split('=')[1]
+
+    console.log(videoCode)
+
+    this.link = ''
+
+    return this.adminService.aggVideo({url: videoCode, date: new Date()});
+  }
+
+  deleteVid(code: string){
+    return this.adminService.deleteVid(code)
   }
 
 }
