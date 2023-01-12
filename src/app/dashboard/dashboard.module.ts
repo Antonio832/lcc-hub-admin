@@ -24,10 +24,11 @@ import { AggMapaComponent } from './agg-mapa/agg-mapa.component';
 import { AnunciosComponent } from './anuncios/anuncios.component';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { VideosComponent } from './videos/videos.component';
+import { GaleriaComponent } from './galeria/galeria.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent],
+  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent],
   imports: [
     CommonModule,
     MatButtonModule,
