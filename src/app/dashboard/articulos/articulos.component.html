@@ -25,7 +25,13 @@
     <div class="articulos">
         <h3>Todos los articulos:</h3>
         <div class="articulosCont">
-            
+            <mat-card *ngFor="let articulo of articulos" style="width: 300px;">
+                {{articulo.url}}
+                <div class="actions">
+                    <button mat-button><mat-icon>edit</mat-icon>Editar</button>
+                    <button mat-button [color]="'warn'"><mat-icon>delete</mat-icon>Borrar</button>
+                </div>
+            </mat-card>
         </div>
     </div>
 </div>

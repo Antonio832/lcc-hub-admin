@@ -45,3 +45,6 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+src/app/dashboard/dnd.directive.spec.ts
+src/app/dashboard/dnd.directive.ts

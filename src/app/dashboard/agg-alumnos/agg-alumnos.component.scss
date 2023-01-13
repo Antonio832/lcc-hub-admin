@@ -13,6 +13,7 @@
 
 .drop-zone{
     aspect-ratio: 19 / 12;
+    color: rgba(128, 128, 128, 0.966);
     width: 450px;
     display: flex;
     flex-direction: column;
@@ -20,4 +21,7 @@
     align-items: center;
     margin-inline: auto;
     border: 3px dashed rgba(128, 128, 128, 0.363);
+    p{
+        margin-block: .25rem;
+    }
 }

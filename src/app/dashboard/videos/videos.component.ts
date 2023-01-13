@@ -19,7 +19,6 @@ export class VideosComponent implements OnInit {
   unsubscribe: any = undefined
 
   ngOnInit(): void {
-    this.adminService.getVideos()
     this.unsubscribe = onSnapshot(this.adminService.getVideos(), (snap)=>{
       let auxArr: any[] = []
       snap.forEach(doc=>{

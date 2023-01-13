@@ -84,6 +84,14 @@ export class AggAlumnosComponent implements OnInit {
     return csvArr;  
   }  
 
+  onDragHandler(dropzone: any){
+
+  }
+
+  onLeaveDrag(dropzone: any){
+
+  }
+
   getHeaderArray(csvRecordsArr: any) {  
     let headers = (<string>csvRecordsArr[0]).split(',');  
     let headerArray = [];  

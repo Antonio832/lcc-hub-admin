@@ -3,9 +3,17 @@
 </h1>
 <div class="cont">
     <div class="add-alumn">
-        <div class="drop-zone" draggable="true">
+        <div 
+            #dpz 
+            class="drop-zone"
+            draggable="true"
+            (dragover)="onDragHandler(dpz)" 
+            (dragleave)="onLeaveDrag(dpz)"
+        >
             Suelta archivo csv 
+            <p>ó</p>
             <button mat-button (click)="file.click()">
+                <mat-icon>file_download</mat-icon>
                 importar
             </button>
             <input 
@@ -13,11 +21,11 @@
                 #file
                 [multiple]="false"
                 (change)="onFileChange($event, file)"
-                style="display:none" 
+                style="display:none; width: 100%; height: 100%;" 
             />
         </div>
     </div>
     <div class="display-alumnos">
-        
+        <button mat-raised-button>Buscar un Alumno</button>
     </div>
 </div>

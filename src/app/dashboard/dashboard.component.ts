@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private auth: Auth, private zn: NgZone, private rtr: Router) { }
 
-  selected = 'videos'
+  selected = 'articulos'
 
   ngOnInit(): void {
     this.auth.onAuthStateChanged((user)=>{

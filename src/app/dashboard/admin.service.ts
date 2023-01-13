@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, orderBy, limit, query, getDocs, startAt, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collection, orderBy, limit, query, getDocs, startAt, deleteDoc, addDoc } from '@angular/fire/firestore';
 import { doc, setDoc, Timestamp, getDoc } from '@firebase/firestore';
 
 interface _Link{
@@ -60,6 +60,10 @@ export class AdminService {
   // ARTICULOS 
   aggArticulo(link: _Link){
     let formatedLink = {...link, date: Timestamp.fromDate(link.date)}
-    return setDoc(doc(this.db,"articulos", formatedLink.url), formatedLink)
+    return addDoc(collection(this.db,"articulos"), formatedLink)
+  }
+
+  getArticulos(){
+    return query(collection(this.db,"articulos"),orderBy("date", "asc"))
   }
 }
