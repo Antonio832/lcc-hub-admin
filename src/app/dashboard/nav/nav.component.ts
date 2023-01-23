@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
 
@@ -10,6 +10,8 @@ import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
 export class NavComponent implements OnInit {
 
   @Output() componentHandler = new EventEmitter<string>()
+
+  @Input() isAdmin: boolean | undefined
 
   constructor(public afAuth: Auth) { }
 

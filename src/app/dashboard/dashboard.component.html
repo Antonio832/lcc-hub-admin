@@ -1,7 +1,7 @@
 <div class="dashboard">
     <div class="drawer">
         
-        <app-nav (componentHandler)="setComponent($event)"></app-nav>
+        <app-nav (componentHandler)="setComponent($event)" [isAdmin]="isAdmin"></app-nav>
         <!-- <button mat-raised-button (click)="signOut()" [color]="'warn'">Sign Out</button> -->
     </div>
     <div class="content" [ngSwitch]="selected">

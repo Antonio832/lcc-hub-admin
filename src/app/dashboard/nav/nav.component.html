@@ -47,4 +47,14 @@
             </div>
         </mat-expansion-panel>
     </mat-accordion>
+    <button 
+        mat-button
+        class="admin" 
+        *ngIf="isAdmin"
+    >
+        <mat-icon style="">
+            admin_panel_settings
+        </mat-icon>
+        Panel de Administrador
+    </button>
 </div>

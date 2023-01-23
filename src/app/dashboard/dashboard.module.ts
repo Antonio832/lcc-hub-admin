@@ -25,10 +25,11 @@ import { AnunciosComponent } from './anuncios/anuncios.component';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { VideosComponent } from './videos/videos.component';
 import { GaleriaComponent } from './galeria/galeria.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent],
+  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent],
   imports: [
     CommonModule,
     MatButtonModule,

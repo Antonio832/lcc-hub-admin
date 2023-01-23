@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, orderBy, limit, query, getDocs, startAt, deleteDoc, addDoc } from '@angular/fire/firestore';
-import { doc, setDoc, Timestamp, getDoc } from '@firebase/firestore';
+import { doc, setDoc, Timestamp, getDoc, getCountFromServer } from '@firebase/firestore';
 
 interface _Link{
   url: string,
@@ -15,8 +15,15 @@ export class AdminService {
   // Inyeccion del proveedor de la base de datos
   constructor(private db: Firestore) { }
 
+  // const collectionQuery = collection(this.db, "subjects")
+
+  // const snap = getCountFromServer(collectionQuery)
+
+  // return console.log((await snap).data().count)
+
   //Perfiles
   async getUserProfile(uid: string){
+
     const docRef = doc(this.db,"profiles", uid)
     const docSnap = await getDoc(docRef)
     if(docSnap.exists()){
@@ -24,6 +31,16 @@ export class AdminService {
     }else{
       return null;
     }
+  }
+
+  async isAdmin(uid: string){
+    const docRef = doc(this.db,'admins', uid)
+    const res = await getDoc(docRef)
+    if(res.exists()){
+      
+      return true
+    }
+    return false
   }
 
   // Agrega un arreglo de materias a la base de datos en 
