@@ -1,4 +1,29 @@
 <h1 class="title">
     Gestor de mapa curricular
 </h1>
-<div class="cont"></div>
+<div class="cont">
+    <div 
+        #dpz 
+        class="drop-zone"
+        draggable="true"
+        (dragover)="onDragHandler(dpz)" 
+        (dragleave)="onLeaveDrag(dpz)"
+    >
+        Suelta archivo csv 
+        <p>ó</p>
+        <button mat-button (click)="file.click()">
+            <mat-icon>file_download</mat-icon>
+            importar
+        </button>
+        <input 
+            type="file"
+            #file
+            [multiple]="false"
+            (change)="onFileChange($event, file)"
+            style="display:none; width: 100%; height: 100%;" 
+        />
+    </div>
+    <div class="actions">
+        <button mat-raised-button>Mostrar mapas</button>
+    </div>
+</div>

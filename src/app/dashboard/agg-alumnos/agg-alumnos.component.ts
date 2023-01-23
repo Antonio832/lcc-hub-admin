@@ -68,16 +68,7 @@ export class AggAlumnosComponent implements OnInit {
           if(headers[i] === "") continue
           csvRecord[headers[i]] = curruntRecord[i].trim().normalize('NFD').replace(/[\u0300-\u036f]/g,"");
         }
-        // csvRecord.id = encodeURI(curruntRecord[0].trim())
-        // csvRecord.nombreMat = encodeURI(curruntRecord[1].trim())
-        // csvRecord.lastName = encodeURI(curruntRecord[2].trim())
-        // csvRecord.credito = encodeURI(curruntRecord[3].trim())
-        // csvRecord.credito1 = encodeURI(curruntRecord[4].trim())
-        // csvRecord.credito2 = encodeURI(curruntRecord[5].trim())
-        // csvRecord.credito3 = encodeURI(curruntRecord[6].trim())
-        // csvRecord.departamento = encodeURI(curruntRecord[7].trim())
-        // csvRecord.nivel = encodeURI(curruntRecord[8].trim())
-        // csvRecord.extra = encodeURI(curruntRecord[9].trim())
+
         csvArr.push(csvRecord);  
       }  
     }  
