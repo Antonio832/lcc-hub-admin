@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AdminService } from '../admin.service';
 import { PreviewCsvComponent } from '../dialogs/preview-csv.component';
 
 @Component({
@@ -10,7 +11,7 @@ import { PreviewCsvComponent } from '../dialogs/preview-csv.component';
 
 export class AggAlumnosComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private adminService: AdminService) { }
 
   ngOnInit(): void {
   }
@@ -23,14 +24,16 @@ export class AggAlumnosComponent implements OnInit {
 
   onFileChange(files: any, ref: any){
     let input = files.path[0].files
-    if(input.length == 1 ){
+    if(input.length == 1 && input[0].type == 'text/csv'){
       let reader = new FileReader()
       reader.readAsText(input[0])
       reader.onload = () => {  
         let csvData = reader.result; 
         let csvRecordsArray = (<string>csvData).split(/\r\n|\n/);  
         let headersRow = this.getHeaderArray(csvRecordsArray);  
+        
         this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow);  
+
         const dialogRef =this.dialog.open(PreviewCsvComponent, {
           data: {
             tabla:[...this.records], 
@@ -41,10 +44,9 @@ export class AggAlumnosComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe((res)=>{
           if(res){
-
+            this.adminService.aggAlumnos(this.records)
           }
         })
-        // for(let i = 0; i < 10; i++) console.dir(this.records[i])
       };  
     }else{
       console.log('AYOOOOO')
@@ -70,7 +72,6 @@ export class AggAlumnosComponent implements OnInit {
         csvArr.push(csvRecord);  
       }  
     }  
-    console.log(csvArr)
     return csvArr;  
   }  
 
@@ -197,7 +198,7 @@ export class AggAlumnosComponent implements OnInit {
           break
 
         default:
-          auxHead = "ALGO SALIO MUY MAL NO PUEDE SER"
+          auxHead = "ESTE HEADER ESTA MAL"
         
       }
       headerArray.push(auxHead);  

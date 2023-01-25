@@ -54,6 +54,12 @@ export class AdminService {
       setDoc(doc(this.db,"subjects", materia.key),materia)
     }
   }
+  
+  aggAlumnos(alumnos: any[]){
+    for(let alumn of alumnos){
+      setDoc(doc(this.db,"students", alumn.studentID),alumn)
+    }
+  }
 
   // Obtiene todas las materias de 10 en 10
   getMaterias(){
