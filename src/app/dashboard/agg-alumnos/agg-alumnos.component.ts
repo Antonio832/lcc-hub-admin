@@ -23,20 +23,18 @@ export class AggAlumnosComponent implements OnInit {
 
   onFileChange(files: any, ref: any){
     let input = files.path[0].files
-    if(input.length == 1 && input[0].type == 'text/csv'){
+    if(input.length == 1 ){
       let reader = new FileReader()
       reader.readAsText(input[0])
       reader.onload = () => {  
         let csvData = reader.result; 
         let csvRecordsArray = (<string>csvData).split(/\r\n|\n/);  
-  
         let headersRow = this.getHeaderArray(csvRecordsArray);  
-        // return console.log(headersRow)
         this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow);  
         const dialogRef =this.dialog.open(PreviewCsvComponent, {
           data: {
             tabla:[...this.records], 
-            subject: 'Materia',
+            subject: 'Alumnos',
             headers: headersRow
           }
         })
@@ -58,20 +56,21 @@ export class AggAlumnosComponent implements OnInit {
 
   getDataRecordsArrayFromCSVFile(csvRecordsArray: any, headers: any) {  
     let csvArr: any = [];  
-    let headerLength = headers.length
+    const headerLength = headers.length
     for (let i = 1; i < csvRecordsArray.length; i++) {  
       let curruntRecord = (<string>csvRecordsArray[i]).split(',');  
       
       if (curruntRecord.length == headerLength) {  
         let csvRecord: any = {} 
-        for(let i = 0; i < 10; i++){
+        for(let i = 0; i < headers.length; i++){
           if(headers[i] === "") continue
           csvRecord[headers[i]] = curruntRecord[i].trim().normalize('NFD').replace(/[\u0300-\u036f]/g,"");
         }
-
+        
         csvArr.push(csvRecord);  
       }  
     }  
+    console.log(csvArr)
     return csvArr;  
   }  
 
@@ -84,50 +83,121 @@ export class AggAlumnosComponent implements OnInit {
   }
 
   getHeaderArray(csvRecordsArr: any) {  
-    let headers = (<string>csvRecordsArr[0]).split(',');  
-    let headerArray = [];  
+    const headers = (<string>csvRecordsArr[0]).toLowerCase().split(',');  
+    let headerArray = [];
     for (let j = 0; j < headers.length; j++) {
       let auxHead = ""
       switch(headers[j]){
-        case "División":
-          auxHead = "academicDivision"
+        case "nombre programa":
+          auxHead = "programName"
+          break
+
+        case "clave programa":
+          auxHead = "programKey"
+          break
+
+        case "plan":
+          auxHead = "studyPlan"
+          break
+
+        case "expediente":
+          auxHead = "studentID"
+          break
+
+        case "nombre":
+          auxHead = "name"
+          break
+
+        case "status alumno":
+          auxHead = "studentStatus"
+          break
+
+        case "cred.pasante":
+          auxHead = "requiredCredits"
+          break
+
+        case "cred.aprob.":
+          auxHead = "approvedCredits"
+          break
+
+        case "prom.kdxs":
+          auxHead = "kardexGrade"
+          break
+
+        case "prom.periodo":
+          auxHead = "periodGrade"
+          break
+
+        case "mat.aprob.":
+          auxHead = "approvedSubjects"
+          break
+
+        case "materias acreditadas":
+          auxHead = "creditedSubjects"
+          break
+
+        case "materias inscritas":
+          auxHead = "enrolledSubjects"
+          break
+
+        case "materias segunda inscr":
+          auxHead = "secondEnrolledSubjects"
+          break
+
+        case "materias tercera inscr":
+          auxHead = "thirdEnrolledSubjects"
+          break
+
+        case "materias reprobadas":
+          auxHead = "failedSubjects"
+          break
+
+        case "materias bajas voluntarias":
+          auxHead = "dropedSubjects"
+          break
+
+        case "cred.insc.":
+          auxHead = "enrolledCredits"
+          break
+
+        case "nivel y ciclo inglés":
+          auxHead = "levelAndCycleEnglish"
+          break
+
+        case "correo":
+          auxHead = "email"
+          break
+
+        case "cred cult":
+          auxHead = "cultCredits"
+          break
+
+        case "cred dep":
+          auxHead = "sportsCredits"
+          break
+          
+        case "practica profesional estatus y ciclo":
+          auxHead = "professionalPracticesStatusAndCycle"
+          break
+
+        case "serviciosocialmateriaestatus-ciclo":
+          auxHead = "socialServiceStatusAndCycle"
           break
         
-        case "Eje":
-          auxHead = "branch"
+        case "estatusproyectoserviciosocial-cicloregistro":
+          auxHead = "socialServiceProjectStatusAndRegisterCycle"
           break
         
-        case "Creditos":
-          auxHead = "credits"
+        case "egel-testimonio":
+          auxHead = "egel"
           break
         
-        case "Departamento":
-          auxHead = "department"
+        case "inscrito":
+          auxHead = "isEnrolled"
           break
-        
-        case "HorasLab":
-          auxHead = "labHours"
-          break
-        
-        case "Requisito":
-          auxHead = "requirements"
-          break
-        
-        case "Clave":
-          auxHead = "subjectKey"
-          break
-        
-        case "Nombre":
-          auxHead = "subjectName"
-          break
-        
-        case "HorasTeoria":
-          auxHead = "theoryHours"
-          break
-        
-        case "HorasTaller":
-          auxHead = "workshopHours"
-          break
+
+        default:
+          auxHead = "ALGO SALIO MUY MAL NO PUEDE SER"
         
       }
       headerArray.push(auxHead);  
