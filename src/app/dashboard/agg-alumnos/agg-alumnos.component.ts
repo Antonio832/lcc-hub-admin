@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from '../admin.service';
+import { BuscaAlumnoDialogComponent } from '../dialogs/busca-alumno-dialog.component';
 import { PreviewCsvComponent } from '../dialogs/preview-csv.component';
 
 @Component({
@@ -49,7 +50,6 @@ export class AggAlumnosComponent implements OnInit {
         })
       };  
     }else{
-      console.log('AYOOOOO')
 
     }
 
@@ -205,5 +205,11 @@ export class AggAlumnosComponent implements OnInit {
     }  
     return headerArray;  
   }  
+
+  buscaAlumno(){
+    const dialogRef = this.dialog.open(BuscaAlumnoDialogComponent,{
+      data: {}
+    })
+  }
 
 }
