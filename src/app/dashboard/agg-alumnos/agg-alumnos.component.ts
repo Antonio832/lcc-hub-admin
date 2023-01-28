@@ -154,7 +154,7 @@ export class AggAlumnosComponent implements OnInit {
           break
 
         case "materias bajas voluntarias":
-          auxHead = "dropedSubjects"
+          auxHead = "droppedSubjects"
           break
 
         case "cred.insc.":

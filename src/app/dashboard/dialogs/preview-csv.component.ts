@@ -11,7 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       <table mat-table [dataSource]="data.tabla" >
 
         <ng-container
-          *ngFor="let col of data.headers"
+          *ngFor="let col of data.headers;"
+          matColumnDef="header"
           [matColumnDef]="col"
         >
           <th mat-header-cell *matHeaderCellDef> {{col}} </th>
@@ -33,12 +34,22 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         display: flex;
         flex-direction: row;
         align-items: center;
+
         :nth-child(1){
           margin-left: auto;
         }
+        
         :nth-child(2){
           margin-right: auto;
         }
+      }
+
+      .mat-column-programName, .mat-column-programKey, .mat-column-studyPlan, .mat-column-studentID, .mat-column-name, .mat-column-studentStatus, .mat-column-requiredCredits, .mat-column-approvedCredits, .mat-column-kardexGrade, .mat-column-periodGrade, .mat-column-approvedSubjects, .mat-column-creditedSubjects, .mat-column-enrolledSubjects, .mat-column-secondEnrolledSubjects, .mat-column-thirdEnrolledSubjects, .mat-column-failedSubjects, .mat-column-dropedSubjects, .mat-column-enrolledCredits, .mat-column-levelAndCycleEnglish, .mat-column-email, .mat-column-cultCredits, .mat-column-sportsCredits, .mat-column-professionalPracticesStatusAndCycle, .mat-column-socialServiceStatusAndCycle, .mat-column-socialServiceProjectStatusAndRegisterCycle, .mat-column-egel, .mat-column-isEnrolled{
+        width: 150px;
+      }
+
+      mat-header-cell{
+        width: 500px;
       }
     `
   ]
@@ -51,7 +62,14 @@ export class PreviewCsvComponent implements OnInit {
   ) { 
   }
 
+  displayedColumns: string[] = ['header'];
+
   ngOnInit(): void {
+    let formatedHeads = []
+    for(let head of this.data.headers){
+      formatedHeads.push(`.mat-column-${head}`)
+    }
+    console.log(formatedHeads.join(', '))
   }
 
 }

@@ -13,6 +13,7 @@ import { MatInputModule, } from '@angular/material/input'
 import { MatFormFieldModule,  } from '@angular/material/form-field'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { MatSelectModule } from '@angular/material/select'
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -35,6 +36,7 @@ import { BuscaAlumnoDialogComponent } from './dialogs/busca-alumno-dialog.compon
     CommonModule,
     MatButtonModule,
     MatExpansionModule,
+    MatSelectModule,
     MatCardModule,
     MatTableModule,
     MatDialogModule,
