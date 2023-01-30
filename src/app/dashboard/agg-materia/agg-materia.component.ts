@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from '../admin.service';
+import { BuscaMateriaDialogComponent } from '../dialogs/busca-materia-dialog.component';
 import { PreviewCsvComponent } from '../dialogs/preview-csv.component';
 
 @Component({
@@ -284,5 +285,9 @@ export class AggMateriaComponent implements OnInit {
     }  
     return headerArray;  
   }  
+
+  buscaMateria(){
+    const dialogRef = this.dialog.open(BuscaMateriaDialogComponent)
+  }
 
 }
