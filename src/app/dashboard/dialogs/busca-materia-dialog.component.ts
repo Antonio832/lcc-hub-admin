@@ -20,6 +20,16 @@ import { AdminService } from '../admin.service';
         />
         <mat-label>No. Materia</mat-label>
       </mat-form-field>
+
+      <div class="matInfo" *ngIf="didMatQuery">
+        <div *ngIf="matExists != undefined && !matExists">
+          <p style="color: rgba(255, 0, 0, 0.699);">* No existe esa materia</p>
+        </div>
+        
+        <div *ngFor="let prop of matInfo | keyvalue;">
+          <mat-card>{{parseProperty[prop.key]}}: {{prop.value}}</mat-card>
+        </div>
+      </div>
     </div>
     <div matDialogActions>
       <button mat-raised-button [mat-dialog-close]="false">Cerrar</button>
@@ -30,9 +40,11 @@ import { AdminService } from '../admin.service';
 })
 export class BuscaMateriaDialogComponent implements OnInit {
 
-  numMateria = ''
+  numMateria: string = ''
 
-  didMatQuery: boolean | undefined = undefined
+  matExists: boolean | undefined = undefined
+
+  didMatQuery: boolean = false
 
   matInfo = {}
 
@@ -61,8 +73,14 @@ export class BuscaMateriaDialogComponent implements OnInit {
   buscaMateria(){
     this.adminService.buscaMateria(this.numMateria).then(res=>{
       if(res.exists()){
-
+        this.matInfo = res.data()
+        console.log(this.matInfo)
+        this.matExists = undefined
+      }else{
+        this.matExists = false
+        this.matInfo = {}
       }
+      return this.didMatQuery = true
     })
   }
 
