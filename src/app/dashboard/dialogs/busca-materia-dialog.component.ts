@@ -32,6 +32,24 @@ export class BuscaMateriaDialogComponent implements OnInit {
 
   numMateria = ''
 
+  didMatQuery: boolean | undefined = undefined
+
+  matInfo = {}
+
+  parseProperty = {
+    "academicDivision":  "División",
+    "branch":  "Eje",
+    "credits":  "Creditos",
+    "department":  "Departamento",
+    "labHours":  "HorasLab",
+    "requirements":  "Requisito",
+    "subjectKey":  "Clave",
+    "subjectName":  "Nombre",
+    "theoryHours":  "HorasTeoria",
+    "workshopHours":  "HorasTaller",
+  
+  }
+
   constructor(
     private dialogRef: MatDialogRef<BuscaMateriaDialogComponent>,
     private adminService: AdminService
@@ -43,7 +61,7 @@ export class BuscaMateriaDialogComponent implements OnInit {
   buscaMateria(){
     this.adminService.buscaMateria(this.numMateria).then(res=>{
       if(res.exists()){
-        
+
       }
     })
   }
