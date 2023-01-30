@@ -54,6 +54,17 @@ export class AdminService {
       setDoc(doc(this.db,"subjects", materia.key),materia)
     }
   }
+
+  // Obtiene todas las materias de 10 en 10
+  getMaterias(){
+    return getDocs(query(collection(this.db,"subjects"),orderBy("subjectName", "asc"), limit(10)))
+  }
+
+  async buscaMateria(numMat: string){
+    const docRef = doc(this.db, 'students', numMat)
+    const res = await getDoc(docRef)
+    return res
+  }
   
   aggAlumnos(alumnos: any[]){
     for(let alumn of alumnos){
@@ -65,11 +76,6 @@ export class AdminService {
     const docRef = doc(this.db, 'students', exp)
     const res = await getDoc(docRef)
     return res
-  }
-
-  // Obtiene todas las materias de 10 en 10
-  getMaterias(){
-    return getDocs(query(collection(this.db,"subjects"),orderBy("subjectName", "asc"), limit(10)))
   }
 
   // VIDEOS
