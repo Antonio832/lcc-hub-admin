@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, orderBy, limit, query, getDocs, startAt, deleteDoc, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, orderBy, limit, query, getDocs, startAt, deleteDoc, addDoc, updateDoc } from '@angular/fire/firestore';
 import { doc, setDoc, Timestamp, getDoc, getCountFromServer } from '@firebase/firestore';
 
 interface _Link{
@@ -101,5 +101,9 @@ export class AdminService {
 
   getArticulos(){
     return query(collection(this.db,"articulos"),orderBy("date", "asc"))
+  }
+
+  updateField(collection: string, docRef: string, field: string, value: string){
+    return updateDoc(doc(this.db, collection, docRef),{[field]: value})
   }
 }
