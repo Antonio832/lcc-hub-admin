@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { onSnapshot } from '@angular/fire/firestore';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { AdminService } from '../admin.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'articulos',
@@ -16,6 +18,9 @@ export class ArticulosComponent implements OnInit {
   tags: string[] = []
 
   articulos: any[] = []
+
+  addOnBlur = true
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   constructor(private adminService: AdminService) { }
 
@@ -49,11 +54,16 @@ export class ArticulosComponent implements OnInit {
     return this.link = ''
   }
 
-  addTag(){
-    if(!this.tagHolder) return
+  addTag(event: MatChipInputEvent){
+    const value = (event.value || '').trim();
 
-    this.tags.push(this.tagHolder)
-    this.tagHolder = ''
+    // Add our fruit
+    if (value) {
+      this.tags.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
   }
 
 }

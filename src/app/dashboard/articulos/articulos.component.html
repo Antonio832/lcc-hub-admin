@@ -2,6 +2,7 @@
     Articulos
 </h1> 
 <div class="cont">
+    <button mat-raised-button class="addBtn"><mat-icon>add</mat-icon>Agregar un articulo</button>
     <div class="aggLink">
         <h3>Agregar un articulo:</h3>
         
@@ -31,9 +32,17 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Tags</mat-label>
+            <mat-chip-list #chipList>
+                <mat-chip *ngFor="let tag of tags" [editable]="true">
+                    {{tag}}
+                </mat-chip>
+            </mat-chip-list>
             <input 
                 [(ngModel)]="tagHolder"
-                (keypress.enter)="addTag()"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addTag($event)"
                 matInput 
                 autocomplete="off" 
             />

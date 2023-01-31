@@ -31,10 +31,11 @@ import { AdminComponent } from './admin/admin.component';
 import { BuscaAlumnoDialogComponent } from './dialogs/busca-alumno-dialog.component';
 import { BuscaMateriaDialogComponent } from './dialogs/busca-materia-dialog.component';
 import { EditaPropiedadDialogComponent } from './dialogs/edita-propiedad-dialog.component';
+import { AggArticuloDialogComponent } from './dialogs/agg-articulo-dialog.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent],
+  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent, AggArticuloDialogComponent],
   imports: [
     CommonModule,
     MatButtonModule,
