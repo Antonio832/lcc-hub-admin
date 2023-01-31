@@ -1,20 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edita-propiedad-dialog',
   template: `
-    <p>
-      edita-propiedad-dialog works!
-    </p>
+    <h1 matDialogTitle>
+      Actualiza {{data.parsedField}}
+    </h1>
+    <div matDialogContent>
+      <mat-form-field appearance="outline">
+        <input matInput autocomplete="off" />
+      </mat-form-field>
+    </div>
+    <div matDialogActions>
+      <button mat-stroked-button (click)="cierra()">Cerrar</button>
+      <button mat-raised-button>Actualizar</button>
+    </div>
   `,
   styles: [
   ]
 })
 export class EditaPropiedadDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialogRef: MatDialogRef<EditaPropiedadDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  cierra(){
+    return this.dialogRef.close()
   }
 
 }

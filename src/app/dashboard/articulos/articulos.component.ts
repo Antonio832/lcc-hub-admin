@@ -9,7 +9,11 @@ import { AdminService } from '../admin.service';
 })
 export class ArticulosComponent implements OnInit {
 
-  link = ''
+  titulo: string = ''
+  desc: string = ''
+  link: string = ''
+  tagHolder: string = ''
+  tags: string[] = []
 
   articulos: any[] = []
 
@@ -27,7 +31,7 @@ export class ArticulosComponent implements OnInit {
     })
   }
 
-  aggLink(){
+  aggArticulo(){
     if(!this.link) return 
 
     let givenURL
@@ -43,6 +47,13 @@ export class ArticulosComponent implements OnInit {
     this.adminService.aggArticulo({url: this.link, date: new Date()})
 
     return this.link = ''
+  }
+
+  addTag(){
+    if(!this.tagHolder) return
+
+    this.tags.push(this.tagHolder)
+    this.tagHolder = ''
   }
 
 }

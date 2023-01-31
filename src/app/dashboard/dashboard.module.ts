@@ -14,6 +14,7 @@ import { MatFormFieldModule,  } from '@angular/material/form-field'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatSelectModule } from '@angular/material/select'
+import { MatChipsModule } from '@angular/material/chips'
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -38,6 +39,7 @@ import { EditaPropiedadDialogComponent } from './dialogs/edita-propiedad-dialog.
     CommonModule,
     MatButtonModule,
     MatExpansionModule,
+    MatChipsModule,
     MatSelectModule,
     MatCardModule,
     MatTableModule,
