@@ -2,52 +2,14 @@
     Articulos
 </h1> 
 <div class="cont">
-    <button mat-raised-button class="addBtn"><mat-icon>add</mat-icon>Agregar un articulo</button>
-    <div class="aggLink">
-        <h3>Agregar un articulo:</h3>
-        
-        <mat-form-field appearance="outline">
-            <mat-label>Titulo</mat-label>
-            <input 
-                [(ngModel)]="titulo"
-                matInput 
-                autocomplete="off" 
-            />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Descripción</mat-label>
-            <input 
-                [(ngModel)]="link"
-                matInput 
-                autocomplete="off" 
-            />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Link</mat-label>
-            <input 
-                [(ngModel)]="link"
-                matInput 
-                autocomplete="off" 
-            />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Tags</mat-label>
-            <mat-chip-list #chipList>
-                <mat-chip *ngFor="let tag of tags" [editable]="true">
-                    {{tag}}
-                </mat-chip>
-            </mat-chip-list>
-            <input 
-                [(ngModel)]="tagHolder"
-                [matChipInputFor]="chipList"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                [matChipInputAddOnBlur]="addOnBlur"
-                (matChipInputTokenEnd)="addTag($event)"
-                matInput 
-                autocomplete="off" 
-            />
-        </mat-form-field>
-    </div>
+    <button 
+        mat-raised-button 
+        class="addBtn"
+        (click)="aggArticulo()"
+    >
+        <mat-icon>add</mat-icon>Agregar un articulo
+    </button>
+
     <div class="articulos">
         <h3>Todos los articulos:</h3>
         <div class="articulosCont">
