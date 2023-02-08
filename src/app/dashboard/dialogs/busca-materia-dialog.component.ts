@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AdminService } from '../admin.service';
+import { EditaPropiedadDialogComponent } from './edita-propiedad-dialog.component';
 
 @Component({
   selector: 'app-busca-materia-dialog',
@@ -26,16 +27,32 @@ import { AdminService } from '../admin.service';
           <p style="color: rgba(255, 0, 0, 0.699);">* No existe esa materia</p>
         </div>
         
-        <div *ngFor="let prop of matInfo | keyvalue;">
-          <mat-card>{{parseProperty[prop.key]}}: {{prop.value}}</mat-card>
+        <div *ngFor="let prop of matInfo | keyvalue;" class="field">
+          <mat-card 
+            (click)="updateField(parseProperty[prop.key], prop.key)"
+          >
+            {{parseProperty[prop.key]}}: {{prop.value}}
+          </mat-card>
         </div>
+
       </div>
     </div>
     <div matDialogActions>
       <button mat-raised-button [mat-dialog-close]="false">Cerrar</button>
     </div>
   `,
-  styles: [
+  styles: [`
+      .matInfo{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      .field{
+        cursor: pointer;
+      }
+    `
   ]
 })
 export class BuscaMateriaDialogComponent implements OnInit {
@@ -64,7 +81,8 @@ export class BuscaMateriaDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<BuscaMateriaDialogComponent>,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -81,6 +99,20 @@ export class BuscaMateriaDialogComponent implements OnInit {
         this.matInfo = {}
       }
       return this.didMatQuery = true
+    })
+  }
+
+  updateField(parsedField: string, field: string){
+    const dialogRef = this.dialog.open(EditaPropiedadDialogComponent,{
+      data:{
+        parsedField: parsedField
+      }
+    })
+
+    dialogRef.afterClosed().subscribe((res)=>{
+      if(res){
+        console.log(res)
+      }
     })
   }
 

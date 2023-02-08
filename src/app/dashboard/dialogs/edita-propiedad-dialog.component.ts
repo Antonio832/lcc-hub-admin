@@ -9,12 +9,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </h1>
     <div matDialogContent>
       <mat-form-field appearance="outline">
-        <input matInput autocomplete="off" />
+        <input matInput autocomplete="off" [(ngModel)]="newVal" />
       </mat-form-field>
     </div>
     <div matDialogActions>
       <button mat-stroked-button (click)="cierra()">Cerrar</button>
-      <button mat-raised-button>Actualizar</button>
+      <button mat-raised-button [disabled]="!newVal" [matDialogClose]="newVal">Actualizar</button>
     </div>
   `,
   styles: [
@@ -26,6 +26,8 @@ export class EditaPropiedadDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<EditaPropiedadDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
+
+  newVal: any;
 
   ngOnInit(): void {
   }
