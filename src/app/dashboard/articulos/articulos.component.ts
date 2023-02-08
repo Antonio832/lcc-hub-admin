@@ -24,7 +24,7 @@ export class ArticulosComponent implements OnInit {
     this.unsubscribe = onSnapshot(this.adminService.getArticulos(), (snap)=>{
       let auxArr: any[] = []
       snap.forEach(doc=>{
-        auxArr.push(doc.data())
+        auxArr.push({...doc.data(), docRef: doc.id})
       })
       this.articulos = auxArr
     })
@@ -43,6 +43,10 @@ export class ArticulosComponent implements OnInit {
         
       }
     })
+  }
+
+  deleteArtic(artId: any){
+    return this.adminService.deleteArticulo(artId)
   }
 
 }

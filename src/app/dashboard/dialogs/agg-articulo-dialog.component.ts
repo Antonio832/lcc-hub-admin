@@ -157,7 +157,6 @@ export class AggArticuloDialogComponent implements OnInit {
   addTag(event: MatChipInputEvent){
     const value = (event.value || '').trim();
 
-    // Add our fruit
     if (value) {
       this.tags.push(value);
     }
