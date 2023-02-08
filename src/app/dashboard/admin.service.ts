@@ -7,7 +7,8 @@ import { getApp } from 'firebase/app';
 
 interface _Link{
   url: string,
-  date: Date
+  date: Date,
+  titulo: string
 }
 
 @Injectable({
@@ -18,11 +19,7 @@ export class AdminService {
   // Inyeccion del proveedor de la base de datos
   constructor(private db: Firestore) { }
 
-  // const collectionQuery = collection(this.db, "subjects")
-
-  // const snap = getCountFromServer(collectionQuery)
-
-  // return console.log((await snap).data().count)
+  uid: string = ''
 
   uploadPhoto(photo: File){
     const storage = getStorage()
@@ -34,7 +31,7 @@ export class AdminService {
 
   //Perfiles
   async getUserProfile(uid: string){
-    
+    this.uid = uid
     const docRef = doc(this.db,"profiles", uid)
     const docSnap = await getDoc(docRef)
     if(docSnap.exists()){
@@ -92,7 +89,7 @@ export class AdminService {
 
   // VIDEOS
   async aggVideo(link: _Link){
-    let formatedLink = {...link, date: Timestamp.fromDate(link.date)}
+    const formatedLink = {...link, date: Timestamp.fromDate(link.date), uid: this.uid}
     return await setDoc(doc(this.db,"videos", formatedLink.url), formatedLink)
   }
 

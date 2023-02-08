@@ -5,19 +5,28 @@
     <div class="aggVideo">
         <h3>Agregar un video:</h3>
         <mat-form-field appearance="outline">
+            <mat-label>Titulo</mat-label>
+            <input 
+                [(ngModel)]="titulo"
+                matInput
+                type="text"
+                autocomplete="off"
+            />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>Link</mat-label>
             <input
                 [(ngModel)]="link"
                 matInput 
                 autocomplete="off" 
-                (keydown.enter)="aggLink()"
+                (keydown.enter)="aggVid()"
                 placeholder="https://www.youtube.com/watch?v=mWWS8B-5eT4" 
             />
             <button 
                 mat-icon-button 
                 matSuffix 
-                [disabled]="!link"
-                (click)="aggLink()"
+                [disabled]="!link || !titulo"
+                (click)="aggVid()"
             >
                 <mat-icon>add</mat-icon>
             </button>

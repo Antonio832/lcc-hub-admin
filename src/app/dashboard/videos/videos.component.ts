@@ -11,6 +11,7 @@ import { AdminService } from '../admin.service';
 export class VideosComponent implements OnInit {
 
   link: string = ''
+  titulo: string = ''
 
   safeVideos: any[] = []
 
@@ -31,18 +32,19 @@ export class VideosComponent implements OnInit {
     })
   }
 
-  aggLink(){
-    if(!this.link) return 
+  aggVid(){
+    if(!this.link || !this.titulo) return 
 
     let givenURL
     
     try {
-        givenURL = new URL (this.link);
+      givenURL = new URL (this.link);
     } catch (error) {
-        console.log ("error is", error);
-        this.link = ''
-       return console.log('no fue un URL valido'); 
+      console.log ("error is", error);
+      this.link = ''
+      return console.log('no fue un URL valido'); 
     }
+
     const splitUrl = this.link.split('www.')
     const doubleSplit = splitUrl[1].split('.')
 
@@ -50,11 +52,13 @@ export class VideosComponent implements OnInit {
 
     const videoCode = doubleSplit[1].split('=')[1]
 
-    console.log(videoCode)
-
     this.link = ''
 
-    return this.adminService.aggVideo({url: videoCode, date: new Date()});
+    return this.adminService.aggVideo({
+      url: videoCode, 
+      date: new Date(), 
+      titulo: this.titulo
+    });
   }
 
   deleteVid(code: string){

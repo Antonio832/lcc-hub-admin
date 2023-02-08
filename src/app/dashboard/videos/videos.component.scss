@@ -14,9 +14,10 @@
 .aggVideo{
     margin-top: 1rem;
     margin-left: 1rem;
-    gap: 1rem;
+    width: max-content;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .videos{
