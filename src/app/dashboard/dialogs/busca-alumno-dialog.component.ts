@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdminService } from '../admin.service';
+import { EditaPropiedadDialogComponent } from './edita-propiedad-dialog.component';
 
 @Component({
   selector: 'app-busca-alumno-dialog',
@@ -88,7 +89,8 @@ export class BuscaAlumnoDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<BuscaAlumnoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private dialog: MatDialog
   ) { 
   }
 
@@ -143,6 +145,20 @@ export class BuscaAlumnoDialogComponent implements OnInit {
         this.studentInfo = {}
       }
       return this.didStudentQuery = true
+    })
+  }
+
+  updateField(parsedField: string, field: string){
+    const dialogRef = this.dialog.open(EditaPropiedadDialogComponent,{
+      data:{
+        parsedField: parsedField
+      }
+    })
+
+    dialogRef.afterClosed().subscribe((res)=>{
+      if(res){
+        console.log(res)
+      }
     })
   }
 
