@@ -18,11 +18,9 @@ export class ArticulosComponent implements OnInit {
 
   unsubscribe: any = undefined
 
+  img: any
+
   ngOnInit(): void {
-    const dialogRef = this.dialog.open(AggArticuloDialogComponent,{
-      width: '55vw'
-    })
-    return
     this.unsubscribe = onSnapshot(this.adminService.getArticulos(), (snap)=>{
       let auxArr: any[] = []
       snap.forEach(doc=>{
@@ -35,6 +33,15 @@ export class ArticulosComponent implements OnInit {
   aggArticulo(){
     const dialogRef = this.dialog.open(AggArticuloDialogComponent,{
       width: '600px'
+    })
+
+    dialogRef.afterClosed().subscribe(res=>{
+      if(res){
+        const articData = res[0]
+        console.log(articData)
+        this.adminService.uploadPhoto(articData.imgSrc)
+        
+      }
     })
   }
 

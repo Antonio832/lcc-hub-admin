@@ -32,6 +32,7 @@ import { BuscaAlumnoDialogComponent } from './dialogs/busca-alumno-dialog.compon
 import { BuscaMateriaDialogComponent } from './dialogs/busca-materia-dialog.component';
 import { EditaPropiedadDialogComponent } from './dialogs/edita-propiedad-dialog.component';
 import { AggArticuloDialogComponent } from './dialogs/agg-articulo-dialog.component';
+import { StorageModule } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { AggArticuloDialogComponent } from './dialogs/agg-articulo-dialog.compon
     MatFormFieldModule,
     MatMenuModule,
     MatIconModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    StorageModule
   ]
 })
 export class DashboardModule { }

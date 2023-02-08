@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
     private auth: Auth, 
     private zn: NgZone, 
     private rtr: Router, 
-    private adminService: AdminService
+    private adminService: AdminService,
   ) { }
 
   selected = 'articulos'

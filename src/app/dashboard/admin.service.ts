@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, orderBy, limit, query, getDocs, startAt, deleteDoc, addDoc, updateDoc } from '@angular/fire/firestore';
+import { ref, uploadBytes } from '@angular/fire/storage';
 import { doc, setDoc, Timestamp, getDoc, getCountFromServer } from '@firebase/firestore';
+import { getStorage } from '@firebase/storage';
+import { getApp } from 'firebase/app';
 
 interface _Link{
   url: string,
@@ -21,9 +24,17 @@ export class AdminService {
 
   // return console.log((await snap).data().count)
 
+  uploadPhoto(photo: File){
+    const storage = getStorage()
+    const imgRef = ref(storage, photo.name)
+    uploadBytes(imgRef, photo).then((snap)=>{
+      console.log(snap)
+    })
+  }
+
   //Perfiles
   async getUserProfile(uid: string){
-
+    
     const docRef = doc(this.db,"profiles", uid)
     const docSnap = await getDoc(docRef)
     if(docSnap.exists()){

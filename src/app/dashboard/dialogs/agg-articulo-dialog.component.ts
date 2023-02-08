@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -76,15 +77,17 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
       </div>
     </div>
     <div matDialogActions>
-      <button mat-button>Cerrar</button>
+      <button mat-button (click)="cerrar()">Cerrar</button>
       <button 
         mat-raised-button
         [disabled]="
           !titulo ||
           !desc ||
           !link ||
-          !tags.length
+          !tags.length ||
+          !gotImg
           "
+        [mat-dialog-close]="[{titulo,desc,link,tags,imgSrc}]"
       >
         Agregar
       </button>
@@ -112,24 +115,35 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 })
 export class AggArticuloDialogComponent implements OnInit {
 
+  imgSrc: string | any = ""
+
   titulo: string = ''
   desc: string = ''
   link: string = ''
   tagHolder: string = ''
   tags: string[] = []
+  gotImg: boolean = false
 
   addOnBlur = true
   
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-  constructor() { }
+  constructor(private dialogRef: MatDialogRef<AggArticuloDialogComponent>) { }
 
   ngOnInit(): void {
   }
 
+  cerrar(){
+    this.dialogRef.close()
+  }
+
   onFileChange(files:any, ref: any){
-    let input = files.path[0].files
-    console.log(input)
+    this.imgSrc = files.target.files[0]
+    if(this.imgSrc.type == "image/jpg" || this.imgSrc.type == "image/png" ){
+      this.gotImg = true
+    }else{
+      this.imgSrc = ""
+    }
   }
 
   removeTag(tag: string){
