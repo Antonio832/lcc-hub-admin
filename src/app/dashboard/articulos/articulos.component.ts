@@ -32,7 +32,10 @@ export class ArticulosComponent implements OnInit {
 
   aggArticulo(){
     const dialogRef = this.dialog.open(AggArticuloDialogComponent,{
-      width: '600px'
+      width: '600px',
+      data:{
+        type: 'Articulo'
+      }
     })
 
     dialogRef.afterClosed().subscribe(res=>{

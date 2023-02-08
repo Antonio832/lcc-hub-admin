@@ -21,12 +21,10 @@ export class AdminService {
 
   uid: string = ''
 
-  uploadPhoto(photo: File){
+  async uploadPhoto(photo: File){
     const storage = getStorage()
     const imgRef = ref(storage, photo.name)
-    uploadBytes(imgRef, photo).then((snap)=>{
-      console.log(snap)
-    })
+    return await uploadBytes(imgRef, photo)
   }
 
   //Perfiles
@@ -117,5 +115,18 @@ export class AdminService {
 
   updateField(collection: string, docRef: string, field: string, value: string){
     return updateDoc(doc(this.db, collection, docRef),{[field]: value})
+  }
+
+  // ANUNCIOS
+  aggAnuncio(anuncio: any){
+    return console.log(anuncio)
+    this.uploadPhoto(anuncio.imgSrc).then(res=>{
+
+    })
+    const formatedAnun = {...anuncio, date: Timestamp.fromDate(new Date()), imgSrc: anuncio.imgSrc.name}
+  }
+
+  getAnuncios(){
+    return query(collection(this.db,"anuncios",), orderBy("date", "asc"))
   }
 }

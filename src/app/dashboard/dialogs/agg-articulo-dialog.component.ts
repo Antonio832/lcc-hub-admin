@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
   selector: 'app-agg-articulo-dialog',
   template: `
     <h1 matDialogTitle>
-      Agrega un articulo
+      Agrega un {{data.type}}
     </h1>
     <div matDialogContent class="cont">
       <div class="left">
@@ -106,6 +106,7 @@ import { MatDialogRef } from '@angular/material/dialog';
       .divider{
         display: flex;
         margin-inline: 1rem;
+
         width: 1px;
         height: auto;
         background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(120,120,120,1) 50%, rgba(255,255,255,1) 100%);
@@ -128,7 +129,10 @@ export class AggArticuloDialogComponent implements OnInit {
   
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-  constructor(private dialogRef: MatDialogRef<AggArticuloDialogComponent>) { }
+  constructor(
+    private dialogRef: MatDialogRef<AggArticuloDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit(): void {
   }
@@ -139,7 +143,11 @@ export class AggArticuloDialogComponent implements OnInit {
 
   onFileChange(files:any, ref: any){
     this.imgSrc = files.target.files[0]
-    if(this.imgSrc.type == "image/jpg" || this.imgSrc.type == "image/png" ){
+    console.log(this.imgSrc)
+    if(this.imgSrc.type == "image/jpg" || 
+      this.imgSrc.type == "image/png" || 
+      this.imgSrc.type == "image/jpeg"
+    ){
       this.gotImg = true
     }else{
       this.imgSrc = ""
