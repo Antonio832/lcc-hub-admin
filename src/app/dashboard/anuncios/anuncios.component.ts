@@ -12,4 +12,8 @@ export class AnunciosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  aggAnuncio(){
+    
+  }
+
 }
