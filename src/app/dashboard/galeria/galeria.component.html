@@ -3,6 +3,16 @@
 </h1> 
 <div class="cont">
     <div class="aggFoto">
-        <button mat-raised-button><mat-icon>upload</mat-icon>Subir Foto</button>
+        <button mat-button (click)="file.click()">
+            <mat-icon>file_download</mat-icon>
+            importar
+          </button>
+          <input 
+            type="file"
+            #file
+            [multiple]="false"
+            (change)="onFileChange($event, file)"
+            style="display:none; width: 100%; height: 100%;" 
+          />
     </div>
 </div>

@@ -1,6 +1,7 @@
+import { P } from '@angular/cdk/keycodes';
 import { Injectable } from '@angular/core';
 import { Firestore, collection, orderBy, limit, query, getDocs, startAt, deleteDoc, addDoc, updateDoc } from '@angular/fire/firestore';
-import { ref, uploadBytes } from '@angular/fire/storage';
+import { getBlob, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
 import { doc, setDoc, Timestamp, getDoc, getCountFromServer } from '@firebase/firestore';
 import { getStorage } from '@firebase/storage';
 import { getApp } from 'firebase/app';
@@ -25,6 +26,21 @@ export class AdminService {
     const storage = getStorage()
     const imgRef = ref(storage, photo.name)
     return await uploadBytes(imgRef, photo)
+  }
+
+  aggImgGaleria(photo: File){
+    const storage = getStorage()
+    const imgRef = ref(storage, photo.name)
+    uploadBytes(imgRef, photo).then(async res=>{
+      const url = await getDownloadURL(imgRef)
+
+      const formatedPhoto = {
+        imgSrc: url,
+        uid: this.uid,
+        date: Timestamp.fromDate(new Date()),
+        visible: true,
+      }
+    })
   }
 
   //Perfiles
@@ -118,12 +134,23 @@ export class AdminService {
   }
 
   // ANUNCIOS
-  aggAnuncio(anuncio: any){
-    return console.log(anuncio)
-    this.uploadPhoto(anuncio.imgSrc).then(res=>{
+  async aggAnuncio(anuncio: any){
+    return await this.uploadPhoto(anuncio.imgSrc).then(async res=>{
+      
+      const storage = getStorage()
+      const imgRef = ref(storage, anuncio.imgSrc.name)
+      
+      const url: string = await getDownloadURL(imgRef)
+
+      const formatedAnun = {
+        ...anuncio, 
+        date: Timestamp.fromDate(new Date()), 
+        imgSrc: url,
+        uid: this.uid
+      }
+      return addDoc(collection(this.db,"anuncios"),formatedAnun)
 
     })
-    const formatedAnun = {...anuncio, date: Timestamp.fromDate(new Date()), imgSrc: anuncio.imgSrc.name}
   }
 
   getAnuncios(){

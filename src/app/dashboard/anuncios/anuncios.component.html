@@ -9,5 +9,11 @@
     >
         <mat-icon>add</mat-icon>Agrega un anuncio
     </button>
+
+    <div class="anuncios">
+        <div *ngFor="let anun of anuncios">
+            <img [src]="anun.imgSrc">
+        </div>
+    </div>
     
 </div>
