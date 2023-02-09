@@ -11,8 +11,20 @@
     </button>
 
     <div class="anuncios">
-        <div *ngFor="let anun of anuncios">
-            <img [src]="anun.imgSrc">
+        <div *ngFor="let anun of anuncios" class="anuncio">
+            <button mat-icon-button class="btnEdit" matTooltip="Edita" (click)="editaAnuncio(anun)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <img [src]="anun.imgSrc" class="anuncioImg">
+            <div class="fade-wrapper">
+                <h2>{{anun.titulo}}</h2>
+                <p>{{anun.desc}}</p>
+                <div class="tags">
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let tag of anun.tags">{{tag}}</mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
         </div>
     </div>
     

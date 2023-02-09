@@ -24,6 +24,7 @@ export class AnunciosComponent implements OnInit {
         auxArr.push({...doc.data(), docRef: doc.id})
       })
       this.anuncios = auxArr
+      console.log(this.anuncios[0])
     })
   }
 
@@ -40,6 +41,10 @@ export class AnunciosComponent implements OnInit {
         this.adminService.aggAnuncio(res[0])
       }
     })
+  }
+
+  editaAnuncio(anuncio: any){
+
   }
 
 }
