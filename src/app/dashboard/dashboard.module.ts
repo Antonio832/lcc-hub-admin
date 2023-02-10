@@ -33,10 +33,11 @@ import { BuscaMateriaDialogComponent } from './dialogs/busca-materia-dialog.comp
 import { EditaPropiedadDialogComponent } from './dialogs/edita-propiedad-dialog.component';
 import { AggArticuloDialogComponent } from './dialogs/agg-articulo-dialog.component';
 import { StorageModule } from '@angular/fire/storage';
+import { EditaArtDialogComponent } from './dialogs/edita-art-dialog.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent, AggArticuloDialogComponent],
+  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent, AggArticuloDialogComponent, EditaArtDialogComponent],
   imports: [
     CommonModule,
     MatButtonModule,
