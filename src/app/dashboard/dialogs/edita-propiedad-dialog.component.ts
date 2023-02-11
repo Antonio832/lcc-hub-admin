@@ -30,6 +30,7 @@ export class EditaPropiedadDialogComponent implements OnInit {
   newVal: any;
 
   ngOnInit(): void {
+    console.log(this.data)
   }
 
   cierra(){

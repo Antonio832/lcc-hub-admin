@@ -48,6 +48,10 @@ export class ArticulosComponent implements OnInit {
     })
   }
 
+  editaArticulo(artic: any){
+
+  }
+
   deleteArtic(artId: any){
     return this.adminService.deleteArticulo(artId)
   }

@@ -16,7 +16,7 @@
             <mat-card *ngFor="let articulo of articulos" style="width: 300px;">
                 {{articulo.url}}
                 <div class="actions">
-                    <button mat-button><mat-icon>edit</mat-icon>Editar</button>
+                    <button mat-button (click)="editaArt(articulo)"><mat-icon>edit</mat-icon>Editar</button>
                     <button mat-button [color]="'warn'" (click)="deleteArtic(articulo.docRef)"><mat-icon>delete</mat-icon>Borrar</button>
                 </div>
             </mat-card>

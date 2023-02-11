@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { onSnapshot } from '@firebase/firestore';
 import { AdminService } from '../admin.service';
 import { AggArticuloDialogComponent } from '../dialogs/agg-articulo-dialog.component';
+import { EditaArtDialogComponent } from '../dialogs/edita-art-dialog.component';
 
 @Component({
   selector: 'anuncios',
@@ -44,7 +45,9 @@ export class AnunciosComponent implements OnInit {
   }
 
   editaAnuncio(anuncio: any){
-
+    const dialogRef = this.dialog.open(EditaArtDialogComponent, {
+      data: {...anuncio, collection: 'anuncios'}
+    })
   }
 
 }

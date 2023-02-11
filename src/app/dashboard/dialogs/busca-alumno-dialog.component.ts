@@ -35,7 +35,7 @@ import { EditaPropiedadDialogComponent } from './edita-propiedad-dialog.componen
         </div>
 
         <div *ngIf="studentInfo" class="cards">
-          <div *ngFor="let prop of studentInfo | keyvalue;" >
+          <div *ngFor="let prop of studentInfo | keyvalue;" (click)="updateField(parseProperty[prop.key], prop.key)">
             <mat-card 
               [class]="
               prop.key == 'creditedSubjects' || 
@@ -100,7 +100,7 @@ export class BuscaAlumnoDialogComponent implements OnInit {
 
   didStudentQuery: boolean = false
 
-  studentInfo = {}
+  studentInfo: any = {}
 
   parseProperty = {
     "programName": "Nombre programa",
@@ -157,7 +157,8 @@ export class BuscaAlumnoDialogComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res)=>{
       if(res){
-        console.log(res)
+        this.studentInfo[field] = res
+        this.adminService.updateField('students',this.studentInfo.studentId,field,res)
       }
     })
   }
