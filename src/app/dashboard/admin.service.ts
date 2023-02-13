@@ -116,11 +116,6 @@ export class AdminService {
   }
 
   // ARTICULOS 
-  aggArticulo(link: _Link){
-    let formatedLink = {...link, date: Timestamp.fromDate(link.date)}
-    return addDoc(collection(this.db,"articulos"), formatedLink)
-  }
-
   getArticulos(){
     return query(collection(this.db,"articulos"),orderBy("date", "asc"))
   }
@@ -134,7 +129,7 @@ export class AdminService {
   }
 
   // ANUNCIOS
-  async aggAnuncio(anuncio: any){
+  async aggAnuncioArticulo(anuncio: any, coll: string){
     return await this.uploadPhoto(anuncio.imgSrc).then(async res=>{
       
       const storage = getStorage()
@@ -148,7 +143,7 @@ export class AdminService {
         imgSrc: url,
         uid: this.uid
       }
-      return addDoc(collection(this.db,"anuncios"),formatedAnun)
+      return addDoc(collection(this.db,coll),formatedAnun)
 
     })
   }

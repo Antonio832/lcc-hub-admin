@@ -13,13 +13,21 @@
     <div class="articulos">
         <h3>Todos los articulos:</h3>
         <div class="articulosCont">
-            <mat-card *ngFor="let articulo of articulos" style="width: 300px;">
-                {{articulo.url}}
-                <div class="actions">
-                    <button mat-button (click)="editaArt(articulo)"><mat-icon>edit</mat-icon>Editar</button>
-                    <button mat-button [color]="'warn'" (click)="deleteArtic(articulo.docRef)"><mat-icon>delete</mat-icon>Borrar</button>
+            <div *ngFor="let artic of articulos" class="anuncio">
+                <button mat-icon-button class="btnEdit" matTooltip="Edita" (click)="editaArticulo(artic)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <img [src]="artic.imgSrc" class="anuncioImg">
+                <div class="fade-wrapper">
+                    <h2>{{artic.titulo}}</h2>
+                    <p>{{artic.desc}}</p>
+                    <div class="tags">
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let tag of artic.tags">{{tag}}</mat-chip>
+                        </mat-chip-list>
+                    </div>
                 </div>
-            </mat-card>
+            </div>
         </div>
     </div>
 </div>

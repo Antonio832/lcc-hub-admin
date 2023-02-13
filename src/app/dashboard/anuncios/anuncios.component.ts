@@ -39,7 +39,7 @@ export class AnunciosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res)=>{
       if(res){
-        this.adminService.aggAnuncio(res[0])
+        this.adminService.aggAnuncioArticulo(res[0], "anuncios")
       }
     })
   }

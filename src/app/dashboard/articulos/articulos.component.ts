@@ -4,6 +4,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from '../admin.service';
 import { AggArticuloDialogComponent } from '../dialogs/agg-articulo-dialog.component';
+import { EditaArtDialogComponent } from '../dialogs/edita-art-dialog.component';
 
 @Component({
   selector: 'articulos',
@@ -40,20 +41,17 @@ export class ArticulosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res=>{
       if(res){
-        const articData = res[0]
-        console.log(articData)
-        this.adminService.uploadPhoto(articData.imgSrc)
-        
+        if(res){
+          this.adminService.aggAnuncioArticulo(res[0], 'articulos')
+        }
       }
     })
   }
 
   editaArticulo(artic: any){
-
-  }
-
-  deleteArtic(artId: any){
-    return this.adminService.deleteArticulo(artId)
+    const dialogRef = this.dialog.open(EditaArtDialogComponent, {
+      data: {...artic, collection: 'articulos'}
+    })
   }
 
 }
