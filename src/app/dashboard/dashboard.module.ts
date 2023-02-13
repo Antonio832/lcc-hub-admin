@@ -15,6 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatSelectModule } from '@angular/material/select'
 import { MatChipsModule } from '@angular/material/chips'
+import { MatCheckboxModule } from '@angular/material/checkbox'
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -49,6 +50,7 @@ import { CreateUserDialogComponent } from './dialogs/create-user-dialog.componen
     MatCardModule,
     MatTableModule,
     MatDialogModule,
+    MatCheckboxModule,
     FormsModule,
     MatSlideToggleModule,
     ReactiveFormsModule,

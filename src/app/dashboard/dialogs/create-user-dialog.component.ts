@@ -3,16 +3,79 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-create-user-dialog',
   template: `
-    <p>
-      create-user-dialog works!
-    </p>
+    <h1 matDialogTitle>Crea un Usuario</h1>
+    <div matDialogContent class="cont">
+      <div class="left">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input 
+            matInput
+            autocomplete="off"
+            [(ngModel)]="nombre"
+          />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input 
+            matInput
+            autocomplete="off"
+            [(ngModel)]="correo"
+          />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input 
+            matInput
+            autocomplete="off"
+            [(ngModel)]="password"
+          />
+        </mat-form-field>
+      </div>
+      <div class="right">
+        <mat-checkbox [(ngModel)]="academic">Editor academico</mat-checkbox>
+        <mat-checkbox [(ngModel)]="hub">Editor Hub</mat-checkbox>
+      </div>
+    </div>
+    <div matDialogActions>
+      <button mat-button>Cancelar</button>
+      <button 
+        mat-raised-button 
+        [disabled]="!academic && !hub" 
+        [matDialogClose]="{nombre,correo,password,academic,hub}"
+      >
+        Crear Usuario
+      </button>
+    </div>
   `,
-  styles: [
+  styles: [`
+      .cont{
+        display: flex;
+        gap: 1rem;
+      }
+      .left, .right{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .right{
+        justify-content: center;
+      }
+
+    `
   ]
 })
 export class CreateUserDialogComponent implements OnInit {
 
   constructor() { }
+
+  nombre: string = ''
+  correo: string = ''
+  password: string = ''
+  academic: boolean = false
+  hub: boolean = false
 
   ngOnInit(): void {
   }

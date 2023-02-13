@@ -21,6 +21,7 @@ export class AdminService {
   constructor(private db: Firestore) { }
 
   uid: string = ''
+  userInfo: any
 
   async uploadPhoto(photo: File){
     const storage = getStorage()
@@ -46,10 +47,11 @@ export class AdminService {
   //Perfiles
   async getUserProfile(uid: string){
     this.uid = uid
-    const docRef = doc(this.db,"profiles", uid)
+    const docRef = doc(this.db,"users", uid)
     const docSnap = await getDoc(docRef)
     if(docSnap.exists()){
-      return docSnap.data()
+      this.userInfo = docSnap.data()
+      return this.userInfo
     }else{
       return null;
     }
