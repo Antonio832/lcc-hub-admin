@@ -25,6 +25,7 @@
 .articulosCont{
     margin-top: 1rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -98,6 +99,7 @@
     top: .5rem;
     right: 1rem;
     color: white;
+    background-color: black;
     transition: all .5s ease-in-out;
     opacity: 0;
 }

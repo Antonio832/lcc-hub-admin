@@ -120,8 +120,8 @@ export class AdminService {
     return query(collection(this.db,"articulos"),orderBy("date", "asc"))
   }
   
-  deleteArticulo(docRef: string){
-    return deleteDoc(doc(this.db,'articulos', docRef))
+  deleteDocCol(col: string, docRef: string){
+    return deleteDoc(doc(this.db,col,docRef))
   }
 
   updateField(collection: string, docRef: string, field: string, value: string){

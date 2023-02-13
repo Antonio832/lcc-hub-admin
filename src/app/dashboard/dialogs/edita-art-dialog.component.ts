@@ -1,12 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdminService } from '../admin.service';
+import { ConfirmActionDialogComponent } from './confirm-action-dialog.component';
 import { EditaPropiedadDialogComponent } from './edita-propiedad-dialog.component';
 
 @Component({
   selector: 'app-edita-art-dialog',
   template: `
-    <h1 matDialogTitle>Edita el articulo</h1>
+    <h1 matDialogTitle>Edita el {{data.type}}</h1>
     <div matDialogContent class="cont">
       <mat-card class="prop" (click)="editaProp(data.titulo, 'Titulo', 'titulo')">Titulo: {{data.titulo}}</mat-card>
       <mat-card class="prop" (click)="editaProp(data.desc, 'Descripcion', 'desc')">Descripcion: {{data.desc}}</mat-card>
@@ -15,6 +16,7 @@ import { EditaPropiedadDialogComponent } from './edita-propiedad-dialog.componen
     </div>
     <div matDialogActions>
       <button mat-button [matDialogClose]="">Cerrar</button>
+      <button mat-button (click)="deleteElement()" [color]="'warn'">Borrar</button>
     </div>
   `,
   styles: [`
@@ -35,6 +37,7 @@ export class EditaArtDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<EditaArtDialogComponent>,
     private dialog: MatDialog,
     private adminService: AdminService
   ) { }
@@ -56,6 +59,23 @@ export class EditaArtDialogComponent implements OnInit {
           field,
           res
         )
+      }
+    })
+  }
+
+  deleteElement(){
+    const action = this.data.type == 'Articulo' ? 'eliminar el articulo' : 'eliminar el anuncio'
+    const dialogRef = this.dialog.open(ConfirmActionDialogComponent,{
+      data: {
+        title: action,
+        action: 'Eliminar'
+      }
+    })
+
+    dialogRef.afterClosed().subscribe(res=>{
+      if(res){
+        this.adminService.deleteDocCol(this.data.collection, this.data.docRef)
+        this.dialogRef.close()
       }
     })
   }

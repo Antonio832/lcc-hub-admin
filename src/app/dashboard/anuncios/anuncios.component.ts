@@ -46,7 +46,7 @@ export class AnunciosComponent implements OnInit {
 
   editaAnuncio(anuncio: any){
     const dialogRef = this.dialog.open(EditaArtDialogComponent, {
-      data: {...anuncio, collection: 'anuncios'}
+      data: {...anuncio, collection: 'anuncios', type: 'Anuncio'}
     })
   }
 

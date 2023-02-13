@@ -50,7 +50,7 @@ export class ArticulosComponent implements OnInit {
 
   editaArticulo(artic: any){
     const dialogRef = this.dialog.open(EditaArtDialogComponent, {
-      data: {...artic, collection: 'articulos'}
+      data: {...artic, collection: 'articulos', type: 'Articulo'}
     })
   }
 
