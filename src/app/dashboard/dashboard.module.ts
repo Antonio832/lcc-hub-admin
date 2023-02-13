@@ -37,10 +37,11 @@ import { StorageModule } from '@angular/fire/storage';
 import { EditaArtDialogComponent } from './dialogs/edita-art-dialog.component';
 import { ConfirmActionDialogComponent } from './dialogs/confirm-action-dialog.component';
 import { CreateUserDialogComponent } from './dialogs/create-user-dialog.component';
+import { ImagenGaleriaDialogComponent } from './dialogs/imagen-galeria-dialog.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent, AggArticuloDialogComponent, EditaArtDialogComponent, ConfirmActionDialogComponent, CreateUserDialogComponent],
+  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent, AggArticuloDialogComponent, EditaArtDialogComponent, ConfirmActionDialogComponent, CreateUserDialogComponent, ImagenGaleriaDialogComponent],
   imports: [
     CommonModule,
     MatButtonModule,
