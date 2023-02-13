@@ -1,10 +1,10 @@
 <div class="sideNav">
     <h2 class="title">Admin Dashboard</h2>
-    <div class="profile">
+    <div class="profile" *ngIf="userInfo">
         <button mat-button class="profile-btn">
             <mat-icon>person</mat-icon>
             <span>
-                Edelmira
+                {{userInfo.name}}
             </span>
         </button>
         <button 

@@ -13,7 +13,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private auth: Auth, 
-    private zn: NgZone, 
     private rtr: Router, 
     private adminService: AdminService,
   ) { }
@@ -22,21 +21,7 @@ export class DashboardComponent implements OnInit {
 
   isAdmin: boolean = false
 
- ngOnInit() {
-    this.auth.onAuthStateChanged(async (user)=>{
-      // Si hay usuario o no,
-      // si no hay ususario 'user' va a ser null
-      if(!user){
-        this.zn.run(()=>{
-          // Navega hacia el inicio
-          return this.rtr.navigate(['/'])
-        })
-      }else{
-        this.adminService.getUserProfile(user.uid)
-        this.isAdmin = await this.adminService.isAdmin(user.uid)
-        console.log(user)
-      }
-    })
+  ngOnInit() {
   }
 
   signOut(){
