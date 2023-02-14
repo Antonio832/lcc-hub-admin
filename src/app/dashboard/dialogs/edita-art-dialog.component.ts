@@ -12,7 +12,7 @@ import { EditaPropiedadDialogComponent } from './edita-propiedad-dialog.componen
       <mat-card class="prop" (click)="editaProp(data.titulo, 'Titulo', 'titulo')">Titulo: {{data.titulo}}</mat-card>
       <mat-card class="prop" (click)="editaProp(data.desc, 'Descripcion', 'desc')">Descripcion: {{data.desc}}</mat-card>
       <mat-card class="prop" (click)="editaProp(data.link, 'Link', 'link')">Link: {{data.link}}</mat-card>
-      <mat-card class="prop" (click)="editaProp(data.tags, 'Tags', 'tags')">Tags: {{data.tags}}</mat-card>
+      <mat-card class="prop" (click)="editaProp(data.tags, 'Tags', 'tags','tags')">Tags: {{data.tags}}</mat-card>
     </div>
     <div matDialogActions>
       <button mat-button [matDialogClose]="">Cerrar</button>
@@ -45,9 +45,9 @@ export class EditaArtDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  editaProp(prop: any, parsedField: string, field: string){
+  editaProp(prop: any, parsedField: string, field: string, type?: string){
     const dialogRef = this.dialog.open(EditaPropiedadDialogComponent,{
-      data: {prop, parsedField}
+      data: {prop, parsedField, type: type}
     })
 
     dialogRef.afterClosed().subscribe(res=>{
