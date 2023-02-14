@@ -18,3 +18,36 @@
     display: flex;
     align-items: center;
 }
+
+.photos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.imgWrapper{
+    position: relative;
+}
+
+.imgGaleria{
+    max-width: 200px;
+    object-fit: cover;
+}
+
+.btnWrapper{
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+}
+
+.imgWrapper:hover .btnWrapper{
+    opacity: 1;
+}
+
+.btnEdit{
+    background-color: white;
+}

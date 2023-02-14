@@ -29,18 +29,24 @@ export class AdminService {
     return await uploadBytes(imgRef, photo)
   }
 
-  aggImgGaleria(photo: File){
+  getImgs(){
+    return query(collection(this.db,"galeria"),orderBy("date", 'desc'))
+  }
+
+  aggImgGaleria(photo: File, title: string){
     const storage = getStorage()
     const imgRef = ref(storage, photo.name)
     uploadBytes(imgRef, photo).then(async res=>{
       const url = await getDownloadURL(imgRef)
 
       const formatedPhoto = {
-        imgSrc: url,
+        url: url,
         uid: this.uid,
+        titulo: title,
         date: Timestamp.fromDate(new Date()),
-        visible: true,
+        showInPage: true,
       }
+      setDoc(doc(this.db,"galeria",photo.name),formatedPhoto)
     })
   }
 
@@ -126,7 +132,7 @@ export class AdminService {
     return deleteDoc(doc(this.db,col,docRef))
   }
 
-  updateField(collection: string, docRef: string, field: string, value: string){
+  updateField(collection: string, docRef: string, field: string, value: any){
     return updateDoc(doc(this.db, collection, docRef),{[field]: value})
   }
 
