@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, getAuth } from '@angular/fire/auth';
-import { Firestore } from '@angular/fire/firestore';
+import { collection, deleteDoc, Firestore, onSnapshot, query } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { initializeApp } from '@firebase/app';
 import { doc, setDoc } from '@firebase/firestore';
+import { AdminService } from '../admin.service';
 import { CreateUserDialogComponent } from '../dialogs/create-user-dialog.component';
 
 @Component({
@@ -13,14 +15,39 @@ import { CreateUserDialogComponent } from '../dialogs/create-user-dialog.compone
 })
 export class AdminComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private auth: Auth, private db: Firestore) { }
+  constructor(
+    public dialog: MatDialog, 
+    private auth: Auth, 
+    private db: Firestore, 
+    private adminService: AdminService,
+    
+  ) { }
 
   userInfo: any
 
-  ngOnInit(): void {
-    this.auth.onAuthStateChanged(res=>{
+  users: any[] = []
+
+  ngOnInit() {
+    this.auth.onAuthStateChanged(async res=>{
       if(res){
         this.userInfo = res
+
+        const isAdmin = await this.adminService.isAdmin(this.userInfo.uid)
+
+        if(!isAdmin){
+          this.auth.signOut()
+        }
+
+        onSnapshot(query(collection(this.db,"users")),(snap)=>{
+          let auxArr: any[] = []
+          
+          snap.forEach(doc=>{
+            auxArr.push({...doc.data(), uid: doc.id})
+          })
+
+          this.users = auxArr
+          console.log(this.users)
+        })
       }
     })
   }
@@ -59,6 +86,10 @@ export class AdminComponent implements OnInit {
         })
       }
     })
+  }
+
+  deleteUser(docRef: string){
+    return deleteDoc(doc(this.db, "users",docRef))
   }
 
 }

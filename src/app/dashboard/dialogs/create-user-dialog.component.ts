@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-user-dialog',
@@ -39,7 +40,7 @@ import { Component, OnInit } from '@angular/core';
       </div>
     </div>
     <div matDialogActions>
-      <button mat-button>Cancelar</button>
+      <button mat-button (click)="onNoClick()">Cancelar</button>
       <button 
         mat-raised-button 
         [disabled]="!academic && !hub" 
@@ -69,13 +70,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateUserDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialogRef: MatDialogRef<CreateUserDialogComponent>
+  ) { }
 
   nombre: string = ''
   correo: string = ''
   password: string = ''
   academic: boolean = false
   hub: boolean = false
+
+  onNoClick(){
+    this.dialogRef.close()
+  }
 
   ngOnInit(): void {
   }

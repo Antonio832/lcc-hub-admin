@@ -6,4 +6,20 @@
         <mat-icon>group</mat-icon> 
         Crear un usuario
     </button>
+
+    <div class="users">
+        <mat-card *ngFor="let user of users" style="display: flex; flex-direction: column;">
+            <h3 matCardTitle>{{user.name}}</h3>
+            <p><strong>Poderes:</strong> {{user.powers}}</p>
+            <p><strong>uid:</strong> {{user.uid}}</p>
+            <button 
+                mat-icon-button 
+                [color]="'warn'" 
+                (click)="deleteUser(user.uid)"
+                style="margin-left: auto;"
+            >
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card>
+    </div>
 </div>
