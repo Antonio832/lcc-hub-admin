@@ -33,7 +33,7 @@ export class AdminService {
     return query(collection(this.db,"galeria"),orderBy("date", 'desc'))
   }
 
-  aggImgGaleria(photo: File, title: string){
+  aggImgGaleria(photo: File){
     const storage = getStorage()
     const imgRef = ref(storage, photo.name)
     uploadBytes(imgRef, photo).then(async res=>{
@@ -42,7 +42,6 @@ export class AdminService {
       const formatedPhoto = {
         url: url,
         uid: this.uid,
-        titulo: title,
         date: Timestamp.fromDate(new Date()),
         showInPage: true,
       }
@@ -111,7 +110,7 @@ export class AdminService {
 
   // VIDEOS
   async aggVideo(link: _Link){
-    const formatedLink = {...link, date: Timestamp.fromDate(link.date), uid: this.uid}
+    const formatedLink = {...link, date: Timestamp.fromDate(link.date), uid: this.uid, showInPage: true}
     return await setDoc(doc(this.db,"videos", formatedLink.url), formatedLink)
   }
 
@@ -149,7 +148,8 @@ export class AdminService {
         ...anuncio, 
         date: Timestamp.fromDate(new Date()), 
         imgSrc: url,
-        uid: this.uid
+        uid: this.uid,
+        showInPage: true
       }
       return addDoc(collection(this.db,coll),formatedAnun)
 

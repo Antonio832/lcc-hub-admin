@@ -40,7 +40,7 @@ export class GaleriaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res=>{
       if(res){
-        this.adminService.aggImgGaleria(res.imgSrc, res.titulo)
+        this.adminService.aggImgGaleria(res.imgSrc)
       }
     })
   }

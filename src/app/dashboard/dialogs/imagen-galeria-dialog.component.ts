@@ -6,10 +6,10 @@ import { MatDialogRef } from '@angular/material/dialog';
   template: `
     <h1 matDialogTitle>Sube una imagen</h1>
     <div matDialogContent>
-      <mat-form-field appearance="outline">
+      <!-- <mat-form-field appearance="outline">
         <mat-label>Titulo</mat-label>
         <input type="text" matInput [(ngModel)]="titulo"/>
-      </mat-form-field>
+      </mat-form-field> -->
       <button mat-raised-button (click)="file.click()">
         <mat-icon>file_download</mat-icon>
         Agregar una imagen
@@ -26,8 +26,8 @@ import { MatDialogRef } from '@angular/material/dialog';
       <button mat-button (click)="onNoClick()">Cerrar</button>
       <button 
         mat-raised-button 
-        [matDialogClose]="{imgSrc,titulo}"
-        [disabled]="!titulo || !imgSrc"
+        [matDialogClose]="imgSrc"
+        [disabled]="!imgSrc"
       >
         Subir
       </button>
