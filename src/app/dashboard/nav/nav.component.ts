@@ -36,8 +36,10 @@ export class NavComponent implements OnInit {
       }else{
         this.adminService.getUserProfile(user.uid).then(res=>{
           this.userInfo = res
+          console.log(this.userInfo)
         })
         this.isAdmin = await this.adminService.isAdmin(user.uid)
+        this.componentHandler.emit('galeria')
         console.log(user)
       }
     })

@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
     private adminService: AdminService,
   ) { }
 
-  selected = 'galeria'
+  selected = ''
 
   isAdmin: boolean = false
 

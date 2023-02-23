@@ -24,7 +24,6 @@ export class GaleriaComponent implements OnInit {
       })
 
       this.imgs = arrAux
-      console.log(this.imgs)
     })
   }
 

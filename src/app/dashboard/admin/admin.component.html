@@ -10,7 +10,13 @@
     <div class="users">
         <mat-card *ngFor="let user of users" style="display: flex; flex-direction: column;">
             <h3 matCardTitle>{{user.name}}</h3>
-            <p><strong>Poderes:</strong> {{user.powers}}</p>
+            <p>
+                <strong>Poderes:</strong> 
+                <br>
+                Editor academico: {{user.academic}}.
+                <br>
+                Editor hub: {{user.hub}}.
+            </p>
             <p><strong>uid:</strong> {{user.uid}}</p>
             <button 
                 mat-icon-button 

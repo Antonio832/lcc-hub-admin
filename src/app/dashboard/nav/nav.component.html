@@ -10,15 +10,15 @@
         <button 
             class="logout" 
             mat-icon-button 
-            (click)="this.afAuth.signOut()" 
+            (click)="this.auth.signOut()" 
             matTooltip="LogOut"
             matTooltipPosition="right"
         >
             <mat-icon style="color: red;">logout</mat-icon>
         </button>
     </div>
-    <mat-accordion class="acc">
-        <mat-expansion-panel class="xpanel" #tPanel>
+    <mat-accordion class="acc" *ngIf="userInfo">
+        <mat-expansion-panel class="xpanel" #tPanel *ngIf="userInfo.academic">
             <mat-expansion-panel-header>
                 <mat-icon class="panel-ico">cast_for_education</mat-icon>
                 <p class="expTitle">
@@ -32,7 +32,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="xpanel" #bPanel>
+        <mat-expansion-panel class="xpanel" #bPanel *ngIf="userInfo.hub">
             <mat-expansion-panel-header>
                 <mat-icon class="panel-ico">hub</mat-icon>
                 <p class="expTitle">
