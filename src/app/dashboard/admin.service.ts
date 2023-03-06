@@ -90,7 +90,6 @@ export class AdminService {
   }
 
   async buscaMateria(numMat: string){
-    console.log(numMat)
     const docRef = doc(this.db, 'subjects', numMat)
     const res = await getDoc(docRef)
     return res
