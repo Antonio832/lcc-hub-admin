@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatSelectModule } from '@angular/material/select'
 import { MatChipsModule } from '@angular/material/chips'
 import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatRippleModule } from '@angular/material/core'
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -38,10 +39,11 @@ import { EditaArtDialogComponent } from './dialogs/edita-art-dialog.component';
 import { ConfirmActionDialogComponent } from './dialogs/confirm-action-dialog.component';
 import { CreateUserDialogComponent } from './dialogs/create-user-dialog.component';
 import { ImagenGaleriaDialogComponent } from './dialogs/imagen-galeria-dialog.component';
+import { BtnDashComponent } from './btn-dash/btn-dash.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent, AggArticuloDialogComponent, EditaArtDialogComponent, ConfirmActionDialogComponent, CreateUserDialogComponent, ImagenGaleriaDialogComponent],
+  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent, AggArticuloDialogComponent, EditaArtDialogComponent, ConfirmActionDialogComponent, CreateUserDialogComponent, ImagenGaleriaDialogComponent, BtnDashComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -52,6 +54,7 @@ import { ImagenGaleriaDialogComponent } from './dialogs/imagen-galeria-dialog.co
     MatTableModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatRippleModule,
     FormsModule,
     MatSlideToggleModule,
     ReactiveFormsModule,

@@ -1,0 +1,34 @@
+.wrapper{
+    padding: 1rem;
+    border: 1px solid silver;
+    height: max-content;
+    width: 12dvw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 1rem;
+    color: gray;
+    cursor: pointer;
+}
+
+.wrapper:hover{
+    background-color: rgba(194, 194, 194, 0.137);
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supporte*/
+}
+
+.icon{
+    scale: (2);
+    margin-block: 2.5rem;
+}
+
+.desc{
+    font-size: 12px;
+    text-align: center;
+}

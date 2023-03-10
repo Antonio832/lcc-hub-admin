@@ -2,7 +2,14 @@
     Gestor de Materias
 </h1> 
 <div class="cont">
-    <div class="add-materia">
+    <div class="btns">
+        <dashBtn
+            [ico]="'post_add'"
+            [titulo]="'Agrega Materias'"
+            [desc]="'Agrega materias por archivos .csv ó individualmente.'"
+        ></dashBtn>
+    </div>
+    <div class="add-materia" *ngIf="false">
         <div class="togg-arch">
             <mat-slide-toggle [color]="'primary'" [(ngModel)]="fileMode"></mat-slide-toggle>
             <h2>Modo </h2>

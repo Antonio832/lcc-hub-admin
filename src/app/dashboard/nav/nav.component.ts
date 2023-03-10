@@ -39,7 +39,7 @@ export class NavComponent implements OnInit {
           console.log(this.userInfo)
         })
         this.isAdmin = await this.adminService.isAdmin(user.uid)
-        this.componentHandler.emit('galeria')
+        this.componentHandler.emit('materias')
         console.log(user)
       }
     })
