@@ -33,6 +33,10 @@ export class AggMateriaComponent implements OnInit {
       workshopHours: new FormControl(null, [Validators.required]),
     })
   }
+  
+  agregaMateria(){
+    
+  }
 
   // Todas las funciones get se utilizan para obtener 
   // los valores de los input.
@@ -99,6 +103,8 @@ export class AggMateriaComponent implements OnInit {
   getMasMaterias(){
 
   }
+
+
 
   // Para el typo de gestion de datos para
   // agregar a la base de datos
