@@ -33,16 +33,16 @@ export class AdminService {
     return query(collection(this.db,"galeria"),orderBy("date", 'desc'))
   }
 
-  aggImgGaleria(photo: File){
+  aggImgGaleria(photo: File, date?: Date){
     const storage = getStorage()
     const imgRef = ref(storage, photo.name)
     return uploadBytes(imgRef, photo).then(async res=>{
       const url = await getDownloadURL(imgRef)
-
+      
       const formatedPhoto = {
         url: url,
         uid: this.uid,
-        date: Timestamp.fromDate(new Date()),
+        date: date ? date : Timestamp.fromDate(new Date()),
         showInPage: true,
       }
       return setDoc(doc(this.db,"galeria",photo.name),formatedPhoto)

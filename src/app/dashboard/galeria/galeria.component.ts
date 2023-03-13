@@ -30,10 +30,10 @@ export class GaleriaComponent implements OnInit {
   editImg(docRef: any){
     const prevImgSrc = docRef.url.split('/')[7].split('?')[0]
     const dialogRef = this.dialog.open(ImagenGaleriaDialogComponent)
-
+    console.log(docRef)
     dialogRef.afterClosed().subscribe(res=>{
       if(res){
-        this.adminService.aggImgGaleria(res.imgSrc).then(res=>{
+        this.adminService.aggImgGaleria(res, docRef.date).then(res=>{
           this.adminService.deleteImg(prevImgSrc, docRef.docRef)
         })
       }
