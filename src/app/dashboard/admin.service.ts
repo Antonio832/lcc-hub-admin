@@ -1,7 +1,7 @@
 import { P } from '@angular/cdk/keycodes';
 import { Injectable } from '@angular/core';
 import { Firestore, collection, orderBy, limit, query, getDocs, startAt, deleteDoc, addDoc, updateDoc } from '@angular/fire/firestore';
-import { getBlob, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
+import { deleteObject, getBlob, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
 import { doc, setDoc, Timestamp, getDoc, getCountFromServer } from '@firebase/firestore';
 import { getStorage } from '@firebase/storage';
 import { getApp } from 'firebase/app';
@@ -36,7 +36,7 @@ export class AdminService {
   aggImgGaleria(photo: File){
     const storage = getStorage()
     const imgRef = ref(storage, photo.name)
-    uploadBytes(imgRef, photo).then(async res=>{
+    return uploadBytes(imgRef, photo).then(async res=>{
       const url = await getDownloadURL(imgRef)
 
       const formatedPhoto = {
@@ -45,7 +45,15 @@ export class AdminService {
         date: Timestamp.fromDate(new Date()),
         showInPage: true,
       }
-      setDoc(doc(this.db,"galeria",photo.name),formatedPhoto)
+      return setDoc(doc(this.db,"galeria",photo.name),formatedPhoto)
+    })
+  }
+
+  deleteImg(photoName: string, docRef: string){
+    const storage = getStorage()
+    const imgRef = ref(storage, photoName)
+    deleteObject(imgRef).then(res=>{
+      deleteDoc(doc(this.db,"galeria",docRef))
     })
   }
 
