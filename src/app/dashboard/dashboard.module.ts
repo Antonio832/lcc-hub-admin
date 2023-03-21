@@ -40,10 +40,11 @@ import { ConfirmActionDialogComponent } from './dialogs/confirm-action-dialog.co
 import { CreateUserDialogComponent } from './dialogs/create-user-dialog.component';
 import { ImagenGaleriaDialogComponent } from './dialogs/imagen-galeria-dialog.component';
 import { BtnDashComponent } from './btn-dash/btn-dash.component';
+import { BolsaComponent } from './bolsa/bolsa.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent, AggArticuloDialogComponent, EditaArtDialogComponent, ConfirmActionDialogComponent, CreateUserDialogComponent, ImagenGaleriaDialogComponent, BtnDashComponent],
+  declarations: [DashboardComponent, NavComponent, AggAlumnosComponent, PreviewCsvComponent, AggMateriaComponent, AggMapaComponent, AnunciosComponent, ArticulosComponent, VideosComponent, GaleriaComponent, AdminComponent, BuscaAlumnoDialogComponent, BuscaMateriaDialogComponent, EditaPropiedadDialogComponent, AggArticuloDialogComponent, EditaArtDialogComponent, ConfirmActionDialogComponent, CreateUserDialogComponent, ImagenGaleriaDialogComponent, BtnDashComponent, BolsaComponent],
   imports: [
     CommonModule,
     MatButtonModule,

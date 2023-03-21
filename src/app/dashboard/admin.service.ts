@@ -166,4 +166,8 @@ export class AdminService {
   getAnuncios(){
     return query(collection(this.db,"anuncios",), orderBy("date", "asc"))
   }
+
+  getBolsa(){
+    return query(collection(this.db,"bolsa",), orderBy("date", "asc"))
+  }
 }

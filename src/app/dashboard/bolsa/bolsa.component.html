@@ -1,0 +1,33 @@
+<h1 class="title">
+    Articulos
+</h1> 
+<div class="cont">
+    <button 
+        mat-raised-button 
+        class="addBtn"
+        (click)="aggOferta()"
+    >
+        <mat-icon>add</mat-icon>Agregar una oferta
+    </button>
+
+    <div class="articulos">
+        <h3 style="margin-top: 1rem;">Todas las ofertas:</h3>
+        <div class="articulosCont">
+            <div *ngFor="let ofer of ofertas" class="anuncio">
+                <button mat-icon-button class="btnEdit" matTooltip="Edita" (click)="editaArticulo(ofer)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <img [src]="ofer.imgSrc" class="anuncioImg">
+                <div class="fade-wrapper">
+                    <h2>{{ofer.titulo}}</h2>
+                    <p>{{ofer.desc}}</p>
+                    <div class="tags">
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let tag of ofer.tags">{{tag}}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

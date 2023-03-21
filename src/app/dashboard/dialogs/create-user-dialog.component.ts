@@ -33,6 +33,15 @@ import { MatDialogRef } from '@angular/material/dialog';
             [(ngModel)]="password"
           />
         </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password confirm</mat-label>
+          <input 
+            matInput
+            autocomplete="off"
+            [(ngModel)]="passwordConf"
+          />
+        </mat-form-field>
       </div>
       <div class="right">
         <mat-checkbox [(ngModel)]="academic">Editor academico</mat-checkbox>
@@ -43,7 +52,7 @@ import { MatDialogRef } from '@angular/material/dialog';
       <button mat-button (click)="onNoClick()">Cancelar</button>
       <button 
         mat-raised-button 
-        [disabled]="!academic && !hub" 
+        [disabled]="!academic && !hub || password != passwordConf" 
         [matDialogClose]="{nombre,correo,password,academic,hub}"
       >
         Crear Usuario
@@ -77,6 +86,7 @@ export class CreateUserDialogComponent implements OnInit {
   nombre: string = ''
   correo: string = ''
   password: string = ''
+  passwordConf:string = ''
   academic: boolean = false
   hub: boolean = false
 
